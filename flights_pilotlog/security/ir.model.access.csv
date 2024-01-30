@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_flights_pilotlog_flights_pilotlog,flights_pilotlog.flights_pilotlog,model_flights_pilotlog_flights_pilotlog,base.group_user,1,1,1,1
