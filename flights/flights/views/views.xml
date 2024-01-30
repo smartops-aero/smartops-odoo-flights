@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="flights.list">
+      <field name="name">flights list</field>
+      <field name="model">flights.flights</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="flights.action_window">
+      <field name="name">flights window</field>
+      <field name="res_model">flights.flights</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="flights.action_server">
+      <field name="name">flights server</field>
+      <field name="model_id" ref="model_flights_flights"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="flights" id="flights.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="flights.menu_1" parent="flights.menu_root"/>
+    <menuitem name="Menu 2" id="flights.menu_2" parent="flights.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="flights.menu_1_list" parent="flights.menu_1"
+              action="flights.action_window"/>
+    <menuitem name="Server to list" id="flights" parent="flights.menu_2"
+              action="flights.action_server"/>
+-->
+  </data>
+</odoo>
