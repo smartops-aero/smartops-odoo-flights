@@ -1,37 +1,103 @@
-# Copyright 2024 Ivan Kropotkin <https://twitter.com/yelizariev>
+# Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 # TODO: move the models to individual files
 
 
-class FlightAirport(models.Model):
-    _name = 'flight.airport'
+class FlightAirfield(models.Model):
+    _name = 'flight.airfield'
 
     code = fields.Char()
     partner_id = fields.Char("Address")
+    # TODO: check if want to add more fields
+    # {
+    #  "user_id": 125880,
+    #  "table": "Airfield",
+    #  "guid": "00000000-0000-0000-0000-000000040048",
+    #  "meta": {
+    #    "AFCat": 8,
+    #    "AFCode": "00000000-0000-0000-0000-000000040048",
+    #    "AFIATA": "NKT",
+    #    "AFICAO": "LTCV",
+    #    "AFName": "Sirnak Serafettin Elci",
+    #    "TZCode": 333,
+    #    "Latitude": 37218,
+    #    "ShowList": false,
+    #    "AFCountry": 223,
+    #    "Longitude": -42036,
+    #    "NotesUser": "ATIS 128.400",
+    #    "RegionUser": 0,
+    #    "ElevationFT": 0,
+    #    "Record_Modified": 1616320991
+    #  },
+    #  "platform": 9,
+    #  "_modified": 1616317613
+    # },
 
 
 class FlightAircraft(models.Model):
+
     _name = 'flight.aircraft'
 
     registration = fields.Char("Registration number")
+    # TODO: check if want to add more fields
+    # {
+    #   "user_id": 125880,
+    #   "table": "Aircraft",
+    #   "guid": "00000000-0000-0000-0000-000000000367",
+    #   "meta": {
+    #     "Fin": "",
+    #     "Sea": false,
+    #     "TMG": false,
+    #     "Efis": false,
+    #     "FNPT": 0,
+    #     "Make": "Cessna",
+    #     "Run2": false,
+    #     "Class": 5,
+    #     "Model": "C150",
+    #     "Power": 1,
+    #     "Seats": 0,
+    #     "Active": true,
+    #     "Kg5700": false,
+    #     "Rating": "",
+    #     "Company": "Other",
+    #     "Complex": false,
+    #     "CondLog": 69,
+    #     "FavList": false,
+    #     "Category": 1,
+    #     "HighPerf": false,
+    #     "SubModel": "",
+    #     "Aerobatic": false,
+    #     "RefSearch": "PHALI",
+    #     "Reference": "PH-ALI",
+    #     "Tailwheel": false,
+    #     "DefaultApp": 0,
+    #     "DefaultLog": 2,
+    #     "DefaultOps": 0,
+    #     "DeviceCode": 1,
+    #     "AircraftCode": "00000000-0000-0000-0000-000000000367",
+    #     "DefaultLaunch": 0,
+    #     "Record_Modified": 1616320991
+    #   },
+    #   "platform": 9,
+    #   "_modified": 1616317613
+    # },
 
 
 class FlightNumber(models.Model):
     _name = 'flight.number'
 
     airline_id = fields.Many2one('flight.airline')
-    prefix = fields.Char()
     numbers = fields.Char()
 
 
 class FlightAirline(models.Model):
     _name = 'flight.airline'
 
-    name = fields.Char()
-    default_prefix = fields.Char(help="Default prefix assigned on creating a new flight.number for this airline")
+    name = fields.Char("Prefix")
+    description = fields.Char()
 
 
 class FlightCrew(models.Model):
@@ -55,19 +121,51 @@ class FlightFlight(models.Model):
     flight_number_id = fields.Many2one('flight.number')
     crew_ids = fields.One2many('flight.crew', 'flight_id')
 
-    departure_id = fields.Many2one('flight.airport')
+    departure_id = fields.Many2one('flight.airfield')
     event_ids = fields.One2many('flight.event', 'flight_id')
-    arrival_id = fields.Many2one('flight.airport')
+    arrival_id = fields.Many2one('flight.airfield')
 
 
 class FlightEvent(models.Model):
     _name = 'flight.event'
 
     event_type = fields.Many2one('flight.event.type')
-    actual_date = fields.Datetime()
-    estimated_date = fields.Datetime()
+
     scheduled_date = fields.Datetime()
+    estimated_date = fields.Datetime()
     target_date = fields.Datetime()
+    requested_date = fields.Datetime()
+    actual_date = fields.Datetime()
+
+    # Computed fields to calculate delays
+    scheduled_delay = fields.Float(compute='_compute_scheduled_delay', store=True)
+    estimated_delay = fields.Float(compute='_compute_estimated_delay', store=True)
+    target_delay = fields.Float(compute='_compute_target_delay', store=True)
+    requested_delay = fields.Float(compute='_compute_requested_delay', store=True)
+
+    @api.depends('scheduled_date', 'actual_date')
+    def _compute_scheduled_delay(self):
+        for event in self:
+            if event.scheduled_date and event.actual_date:
+                event.scheduled_delay = (event.actual_date - event.scheduled_date).total_seconds() / 60.0
+
+    @api.depends('estimated_date', 'actual_date')
+    def _compute_estimated_delay(self):
+        for event in self:
+            if event.estimated_date and event.actual_date:
+                event.estimated_delay = (event.actual_date - event.estimated_date).total_seconds() / 60.0
+
+    @api.depends('target_date', 'actual_date')
+    def _compute_target_delay(self):
+        for event in self:
+            if event.target_date and event.actual_date:
+                event.target_delay = (event.actual_date - event.target_date).total_seconds() / 60.0
+
+    @api.depends('requested_date', 'actual_date')
+    def _compute_requested_delay(self):
+        for event in self:
+            if event.requested_date and event.actual_date:
+                event.requested_delay = (event.actual_date - event.requested_date).total_seconds() / 60.0
 
 
 class FlightEventType(models.Model):

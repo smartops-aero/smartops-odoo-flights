@@ -1,4 +1,4 @@
-# Copyright 2024 Ivan Kropotkin <https://twitter.com/yelizariev>
+# Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
 
 from odoo import fields, models
@@ -31,12 +31,12 @@ class FlightAircraftModel(models.Model):
     name = fields.Char()
 
 
-class FlightPeriod(models.Model):
-    _name = 'flight.period'
+class FlightDuration(models.Model):
+    _name = 'flight.duration'
 
     flight_id = fields.Many2one('flight.flight')
     period_type_id = fields.Many2one('flight.period.type')
-    duration = fields.Integer(help="Duration in minutes")
+    minutes = fields.Integer("Number of minutes")
     # TODO: check if we need more models
 
 
