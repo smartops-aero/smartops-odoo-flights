@@ -6,15 +6,19 @@ from odoo import fields, models, api
 # TODO: move the models to individual files
 
 
-class FlightOperator(models.Model):
-    _name = 'flight.operator'
+    source_id = fields.Many2one("flight.data")
+
+
+class FlightAirfield(models.Model):
+    _name = 'flight.airfield'
+    _inherit = 'flight.base'
 
     code = fields.Char()
     partner_id = fields.Char("Address")
     # TODO: check if want to add more fields
     # {
     #  "user_id": 125880,
-    #  "table": "Operator",
+    #  "table": "Airfield",
     #  "guid": "00000000-0000-0000-0000-000000040048",
     #  "meta": {
     #    "AFCat": 8,
@@ -89,12 +93,13 @@ class FlightAircraft(models.Model):
 class FlightNumber(models.Model):
     _name = 'flight.number'
 
-    airline_id = fields.Many2one('flight.airline')
+    operator_id = fields.Many2one('flight.operator')
     numbers = fields.Char()
 
 
-class FlightAirline(models.Model):
-    _name = 'flight.airline'
+class FlightOperator(models.Model):
+    _name = 'flight.operator'
+    _inherit = 'flight.base'
 
     name = fields.Char("Prefix")
     description = fields.Char()
@@ -121,9 +126,9 @@ class FlightFlight(models.Model):
     flight_number_id = fields.Many2one('flight.number')
     crew_ids = fields.One2many('flight.crew', 'flight_id')
 
-    departure_id = fields.Many2one('flight.operator')
+    departure_id = fields.Many2one('flight.airfield')
     event_ids = fields.One2many('flight.event', 'flight_id')
-    arrival_id = fields.Many2one('flight.operator')
+    arrival_id = fields.Many2one('flight.airfield')
 
 
 class FlightEvent(models.Model):
