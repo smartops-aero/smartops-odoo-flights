@@ -11,7 +11,7 @@ from odoo import fields, models, api
 class FlightBase(models.AbstractModel):
     _name = 'flight.base'
 
-    flight_source_id = fields.Many2one("flight.data", unique=True, required=False)
+    flight_source_id = fields.Many2one("flight.data", unique=True, required=False, readonly=True)
 
 
 class Partner(models.Model):
@@ -46,7 +46,7 @@ class Partner(models.Model):
     # },
 
     def _parse_pilot_log_mcc(self, flight_data):
-        data = json.loads(self.raw_text)
+        data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
         return flight_data._data_write(self, {
             # TODO check mapping
@@ -75,7 +75,7 @@ class FlightData(models.Model):
     _sql_constraints = [
         ("unique_ref",
          "unique(source_type,source_model,source_ref)",
-         "Record mush unique reference"
+         "Record must have unique reference"
         )
     ]
 
@@ -106,11 +106,14 @@ class FlightData(models.Model):
     def _data_write(self, model, vals):
         """Update record or create a new one"""
         self.ensure_one()
+        if "flight_source_id" not in vals:
+            vals["flight_source_id"] = self.id
         record = self._search_linked_record(model)
         if record:
             record.write(vals)
         else:
             record = model.create(vals)
+        self.is_parsed = True
         return record
 
 
@@ -146,7 +149,7 @@ class FlightAirfield(models.Model):
     # },
 
     def _parse_pilot_log_mcc(self, flight_data):
-        data = json.loads(self.raw_text)
+        data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
         partner = flight_data._data_write(self.env["res.partner"], {
             # TODO: check mapping
@@ -209,7 +212,7 @@ class FlightAircraft(models.Model):
     #   "_modified": 1616317613
     # },
     def _parse_pilot_log_mcc(self, flight_data):
-        data = json.loads(self.raw_text)
+        data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
         return flight_data._data_write(self, {
             "registration": meta.get("Reference")
@@ -222,6 +225,11 @@ class FlightNumber(models.Model):
 
     operator_id = fields.Many2one('flight.operator')
     numbers = fields.Char()
+
+    @api.depends("operator_id.name", "numbers")
+    def _compute_display_name(self):
+        for r in self:
+            r.display_name = f"{r.operator_id.name} {r.numbers}"
 
 
 class FlightOperator(models.Model):
@@ -252,6 +260,7 @@ class FlightCrewRole(models.Model):
 class FlightFlight(models.Model):
     _name = 'flight.flight'
     _inherit = 'flight.base'
+    _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
     flight_number_id = fields.Many2one('flight.number')
@@ -347,7 +356,7 @@ class FlightFlight(models.Model):
     # },
 
     def _parse_pilot_log_mcc(self, flight_data):
-        data = json.loads(self.raw_text)
+        data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
         # TODO
         return flight_data._data_write(self, {

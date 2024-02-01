@@ -42,16 +42,18 @@
         <field name="model">flight.flight</field>
         <field name="arch" type="xml">
             <form>
-                <!-- Define form fields -->
-                <group>
-                    <field name="aircraft_id"/>
-                    <field name="flight_number_id"/>
-                    <field name="departure_id"/>
-                    <field name="arrival_id"/>
-                </group>
-                <notebook>
-                    <!-- Add other tabs or views if needed -->
-                </notebook>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <field name="aircraft_id"/>
+                        <field name="flight_number_id"/>
+                        <field name="departure_id"/>
+                        <field name="arrival_id"/>
+                        <field name="flight_source_id"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
