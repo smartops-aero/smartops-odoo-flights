@@ -6,15 +6,15 @@ from odoo import fields, models, api
 # TODO: move the models to individual files
 
 
-class FlightAirfield(models.Model):
-    _name = 'flight.airfield'
+class FlightOperator(models.Model):
+    _name = 'flight.operator'
 
     code = fields.Char()
     partner_id = fields.Char("Address")
     # TODO: check if want to add more fields
     # {
     #  "user_id": 125880,
-    #  "table": "Airfield",
+    #  "table": "Operator",
     #  "guid": "00000000-0000-0000-0000-000000040048",
     #  "meta": {
     #    "AFCat": 8,
@@ -121,9 +121,9 @@ class FlightFlight(models.Model):
     flight_number_id = fields.Many2one('flight.number')
     crew_ids = fields.One2many('flight.crew', 'flight_id')
 
-    departure_id = fields.Many2one('flight.airfield')
+    departure_id = fields.Many2one('flight.operator')
     event_ids = fields.One2many('flight.event', 'flight_id')
-    arrival_id = fields.Many2one('flight.airfield')
+    arrival_id = fields.Many2one('flight.operator')
 
 
 class FlightEvent(models.Model):
