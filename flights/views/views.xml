@@ -18,7 +18,7 @@
     <record id="action_flight_flight" model="ir.actions.act_window">
         <field name="name">Flights</field>
         <field name="res_model">flight.flight</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Define tree view for flight.flight -->
@@ -64,7 +64,7 @@
     <record id="action_flight_aircraft" model="ir.actions.act_window">
         <field name="name">Aircrafts</field>
         <field name="res_model">flight.aircraft</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Define tree view for flight.aircraft -->
@@ -101,7 +101,7 @@
     <record id="action_flight_airfield" model="ir.actions.act_window">
         <field name="name">Airfields</field>
         <field name="res_model">flight.airfield</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Define tree view for flight.airfield -->
@@ -140,7 +140,7 @@
     <record id="action_flight_data" model="ir.actions.act_window">
         <field name="name">Source Data</field>
         <field name="res_model">flight.data</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Define tree view for flight.data -->
