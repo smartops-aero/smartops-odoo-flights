@@ -7,9 +7,10 @@ class FlightData(models.Model):
     """Implements one way data syncronization, typically from a file.
 
        Key principles:
-       * `source_model` is main Odoo model for current `flight.data` record.
+       * `source_model` is main Odoo model for the current `flight.data` record.
        * single `flight.data` may create several records in different models
-       * single `flight.data` may create only a single record in a specific model, because every model has a single field Many2one("flight.data")
+       * single `flight.data` may create only a single record in a specific model.
+         This allows linking record and original data via field flight_source_id = Many2one("flight.data")
     """
 
     _name = 'flight.data'
@@ -51,16 +52,3 @@ class FlightData(models.Model):
             ("source_model", "=", model),
             ("source_ref", "=", ref),
         ], limit=1)
-
-    def _data_write(self, model, vals):
-        """Update record or create a new one"""
-        self.ensure_one()
-        if "flight_source_id" not in vals:
-            vals["flight_source_id"] = self.id
-        record = self._search_linked_record(model)
-        if record:
-            record.write(vals)
-        else:
-            record = model.create(vals)
-        self.is_parsed = True
-        return record

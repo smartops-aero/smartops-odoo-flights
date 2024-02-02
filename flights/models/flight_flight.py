@@ -106,5 +106,5 @@ class FlightFlight(models.Model):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
         # TODO
-        return flight_data._data_write(self, {
+        return self._sync_flight_data(flight_data, {
         })

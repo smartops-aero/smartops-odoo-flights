@@ -59,6 +59,7 @@ class MagicWizard(models.TransientModel):
         for data in json.loads(base64.decodebytes(self.payload)):
             table = data.get("table").lower()
             if table not in TABLE_MAP:
+                _logger.debug("Unsupported record: %s", table)
                 continue
             model = TABLE_MAP[table]
             self._update_flight_data({

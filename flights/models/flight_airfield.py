@@ -38,11 +38,11 @@ class FlightAirfield(models.Model):
     def _parse_pilot_log_mcc(self, flight_data):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
-        partner = flight_data._data_write(self.env["res.partner"], {
+        partner = self.env["res.partner"]._sync_flight_data(flight_data, {
             # TODO: check mapping
             "name": meta.get("AFName"),
         })
-        return flight_data._data_write(self, {
+        return self._sync_flight_data(flight_data, {
             # TODO: check mapping
             "code": meta.get("AFIATA"),
             "partner_id": partner.id,
