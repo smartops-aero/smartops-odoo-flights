@@ -10,7 +10,6 @@ class FlightBase(models.AbstractModel):
 
     def _sync_flight_data(self, flight_data, vals):
         """Update record or create a new one"""
-        self.ensure_one()
         if "flight_source_id" not in vals:
             vals["flight_source_id"] = flight_data.id
         record = flight_data._search_linked_record(self)
