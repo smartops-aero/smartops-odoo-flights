@@ -10,7 +10,10 @@ class FlightFlight(models.Model):
     _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
+
     flight_number_id = fields.Many2one('flight.number')
+    operator = fields.Many2many("res.partner")
+
     crew_ids = fields.One2many('flight.crew', 'flight_id')
     pax_ids = fields.Many2many("res.partner", "flight_id")
 
