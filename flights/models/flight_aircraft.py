@@ -4,14 +4,51 @@ import json
 from odoo import models, fields
 
 
-class FlightAircraft(models.Model):
 
+
+class FlightAircraftMake(models.Model):
+    _name = 'flight.aircraft.make'
+
+    name = fields.Char()
+
+
+class FlightAircraftModelTag(models.Model):
+    _name = 'flight.aircraft.model.tag'
+    name = fields.Char()
+
+    # Examples:
+    # retractable, high performance, pressurized, taa, propeller, turbine, jet, efis, aerobatic, tailwheel
+    # turboprop will have turbiane and propeller
+    # turbojet will have turbine and jet
+
+
+class FlightAircraftModel(models.Model):
+    _name = 'flight.aircraft.model'
+    name = fields.Char()
+    make_id = fields.Many2one("flight.aircraft.make")
+    code = fields.Char("ICAO type code")
+    tag_ids = fields.Many2many("flight.aircraft.model.tag")
+    mtow = fields.Integer("Maximum take-off weight in pounds")
+
+
+    # TODO(ivank): add class and category models as per below
+    # class_id = fields.Many2many()
+    # category_id = fields.Many2many()
+
+
+class FlightAircraft(models.Model):
     _name = 'flight.aircraft'
     _inherit = 'flight.base'
     _rec_name = 'registration'
 
-    registration = fields.Char("Registration number")
-    # TODO: check if want to add more fields
+    registration = fields.Char("Aircraft registration", unique=True)
+    sn = fields.Char("Aircraft serial number")
+    year = fields.Date("Year of manufacture")
+
+    model_id = fields.Many2one("flight.aircraft.model")
+
+
+# TODO: check if want to add more fields
     # {
     #   "user_id": 125880,
     #   "table": "Aircraft",
