@@ -16,7 +16,7 @@ class FlightAircraft(models.Model):
 class FlightFlight(models.Model):
     _inherit = 'flight.flight'
 
-    period_ids = fields.One2many("flight.period", 'flight_id')
+    period_ids = fields.One2many("flight.duration", 'flight_id')
 
 
 class FlightAircraftMake(models.Model):
