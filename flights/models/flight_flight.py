@@ -12,10 +12,11 @@ class FlightFlight(models.Model):
     aircraft_id = fields.Many2one('flight.aircraft')
     flight_number_id = fields.Many2one('flight.number')
     crew_ids = fields.One2many('flight.crew', 'flight_id')
+    pax_ids = fields.Many2many("res.partner", "flight_id")
 
-    departure_id = fields.Many2one('flight.airfield')
+    departure_id = fields.Many2one('flight.aerodrome')
+    arrival_id = fields.Many2one('flight.aerodrome')
     event_ids = fields.One2many('flight.event', 'flight_id')
-    arrival_id = fields.Many2one('flight.airfield')
 
     # {
     #   "user_id": 125880,
