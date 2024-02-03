@@ -28,7 +28,17 @@ class FlightAircraftModel(models.Model):
     make_id = fields.Many2one("flight.aircraft.make")
     code = fields.Char("ICAO type code")
     tag_ids = fields.Many2many("flight.aircraft.model.tag")
+
+    #  if   "Kg5700": is true - record 142000 lbs by defaukt as mtow (medium), otherwise record 12000 lbs by default (light)
+
     mtow = fields.Integer("Maximum take-off weight in pounds")
+
+    def get_weight_category(self):
+        if self.mtow >= 299200:
+            return "H"
+        elif self.mtow >= 12500:
+            return "M"
+        return "L"
 
 
     # TODO(ivank): add class and category models as per below
