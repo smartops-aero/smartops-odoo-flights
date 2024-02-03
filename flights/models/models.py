@@ -7,17 +7,17 @@ class FlightNumber(models.Model):
     _name = 'flight.number'
     _inherit = 'flight.base'
 
-    operator_id = fields.Many2one('flight.operator')
+    prefix_id = fields.Many2one('flight.prefix')
     numbers = fields.Char()
 
-    @api.depends("operator_id.name", "numbers")
+    @api.depends("prefix_id.name", "numbers")
     def _compute_display_name(self):
         for r in self:
             r.display_name = f"{r.operator_id.name} {r.numbers}"
 
 
-class FlightOperator(models.Model):
-    _name = 'flight.operator'
+class FlightPrefix(models.Model):
+    _name = 'flight.prefix'
     _inherit = 'flight.base'
 
     name = fields.Char("Prefix")
@@ -48,11 +48,12 @@ class FlightEvent(models.Model):
     flight_id = fields.Many2one('flight.flight')
     event_type = fields.Many2one('flight.event.type')
 
-    scheduled_date = fields.Datetime()
-    estimated_date = fields.Datetime()
-    target_date = fields.Datetime()
-    requested_date = fields.Datetime()
-    actual_date = fields.Datetime()
+    # This is fine as this has a distinct meaning in air operations
+    st = fields.Datetime()  # scheduled time
+    et = fields.Datetime()  # estimated time
+    tt = fields.Datetime()  # target time
+    rt = fields.Datetime()  # requested time
+    at = fields.Datetime()  # actual time
 
 
 class FlightEventType(models.Model):
