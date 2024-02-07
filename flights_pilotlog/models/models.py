@@ -115,8 +115,6 @@ class FlightPilotEventKind(models.Model):
 class FlightPilotNote(models.Model):
     flight_id = fields.Many2many('flight.flight')
    # note = text()
-   hobbs_in = fields.Float()
-   hobbs_out = fields.Float()
    # signature = Image / OCA sign module
 
 class FlightPilotTimeKind(models.Model):
