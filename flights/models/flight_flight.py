@@ -21,6 +21,7 @@ class FlightFlight(models.Model):
     arrival_id = fields.Many2one('flight.aerodrome')
     event_ids = fields.One2many('flight.event', 'flight_id')
 
+    parameter_ids = fields.One2Many()
     # {
     #   "user_id": 125880,
     #   "table": "Flight",
@@ -112,3 +113,15 @@ class FlightFlight(models.Model):
         # TODO
         return self._sync_flight_data(flight_data, {
         })
+
+
+
+
+FlightParameterType():
+
+hobbs_in
+hobbs_out
+oil_before
+oil_after
+fuel_before
+fiel_after

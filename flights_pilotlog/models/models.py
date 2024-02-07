@@ -111,7 +111,6 @@ class FlightPilotEvent(models.Model):
 class FlightPilotEventKind(models.Model):
     # e.g. landing_night, landing day, takefoff_night, takeoff_day, holding, approach
 
-    # also can be used for hobbs_in and out
 
 class FlightPilotNote(models.Model):
     flight_id = fields.Many2many('flight.flight')
