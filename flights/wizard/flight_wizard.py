@@ -17,16 +17,16 @@ class MagicWizard(models.TransientModel):
     _name = 'flight.wizard'
 
     action = fields.Selection([
-        ("pilot_log_mcc", "mccPILOTLOG")
-    ], "Supported formats", required=True, default="pilot_log_mcc")
+        ("mccpilotlog", "mccPILOTLOG")
+    ], "Supported formats", required=True, default="mccpilotlog")
 
     payload = fields.Binary("File", required=True, attachment=False)
     filename = fields.Char(string="Filename")
     override = fields.Boolean("Override existing records", default=True)
 
     def do_action(self):
-        if self.action == "pilot_log_mcc":
-            return self.do_pilot_log_mcc()
+        if self.action == "mccpilotlog":
+            return self.do_mccpilotlog()
         else:
             raise NotImplementedError()
 
@@ -46,8 +46,8 @@ class MagicWizard(models.TransientModel):
         else:
             return self.env['flight.data'].create(vals)
 
-    def do_pilot_log_mcc(self):
-        SOURCE_TYPE = 'pilot_log_mcc'
+    def do_mccpilotlog(self):
+        SOURCE_TYPE = 'mccpilotlog'
         TABLE_MAP = {
             "aircraft": "flight.aircraft",
             "airfield": "flight.airfield",

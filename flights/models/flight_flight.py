@@ -107,7 +107,7 @@ class FlightFlight(models.Model):
     #   "_modified": 1616317613
     # },
 
-    def _parse_pilot_log_mcc(self, flight_data):
+    def _parse_mccpilotlog(self, flight_data):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
         # TODO
