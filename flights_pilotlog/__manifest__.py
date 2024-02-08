@@ -9,7 +9,7 @@
         Flights module extention to manage individual pilot logbook records
     """,
 
-    'author': "Apexive Studio LLC & Ivan Kropotkin",
+    'author': "Apexive Studio LLC, Ivan Elizaryev",
     'website': "https://apexive.com",
 
     # Categories can be used to filter modules in modules listing

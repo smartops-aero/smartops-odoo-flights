@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "flights Ops",
-    'author': "Apexive Studio LLC & Ivan Kropotkin",
+    'author': "Apexive Studio LLC, Ivan Elizaryev",
     'website': "https://apexive.com",
 
     # Categories can be used to filter modules in modules listing

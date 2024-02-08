@@ -10,14 +10,6 @@ Ok, my magic assistant. We need to make draft source code to describe models for
 
 Idea of the module is to make an open source solution to manage different type of flight records about private aircraft flight, airline flight and operator center.
 
-
-Please write python files according to the best Odoo standarts. Use the following copywrite notice for the files:
-
-```
-Copyright 2024 Ivan Kropotkin <https://twitter.com/yelizariev>
-License MIT (https://opensource.org/licenses/MIT).
-```
-
 Use black style formatting for the python files.
 
 The models scheme is below.
