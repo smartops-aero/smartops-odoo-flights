@@ -105,12 +105,13 @@ class FlightPilotTime(models.Model):
 
 class FlightPilotEvent(models.Model):
     flight_id = fields.Many2many('flight.flight')
-    kind_id =
+    # kind_id =
     count = fields.Integer()
+
 
 class FlightPilotEventKind(models.Model):
     # e.g. landing_night, landing day, takefoff_night, takeoff_day, holding, approach
-
+    _name = 'flight.pilot.event.kind_id'
 
 class FlightPilotNote(models.Model):
     flight_id = fields.Many2many('flight.flight')

@@ -5,7 +5,7 @@ from odoo import models
 
 
 class FlightAircraft(models.Model):
-    _name = 'flight.aircraft'
+    _inherit = 'flight.aircraft'
     # TODO: check if want to add more fields
     # {
     #   "user_id": 125880,
@@ -52,6 +52,31 @@ class FlightAircraft(models.Model):
     def _parse_mccpilotlog(self, flight_data):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
+
+        make_name = meta.get("Make")
+        make = self.env["flight.aircraft.make"].search([
+            ("name", "=", make_name),
+        ])
+
+        model_name = meta.get("Model")
+        model = None
+        if make:
+            model = self.env["flight.aircraft.model"].search([
+                ("make_id", "=", make.id),
+                ("name", "=", model_name),
+            ])
+        else:
+            make = self.env["flight.aircraft.make"].create({"name": make_name})
+
+        if not model:
+            # TODO: add model tags?
+            model = self.env["flight.aircraft.model"].create({
+                # TODO: should we use field "code" instead?
+                "name": model_name,
+                "mtow": 142000 if meta.get("Kg5700") else 12000,
+            })
+
         return self._sync_flight_data(flight_data, {
-            "registration": meta.get("Reference")
+            "registration": meta.get("Reference"),
+            "model_id": model.id,
         })

@@ -3,6 +3,18 @@
 Base module
 
 
+# Installation
+
+The module uses OCA/geospatial module, which require extra packages to be installed:
+
+```
+sudo apt-get install postgis postgresql-postgis-scripts
+```
+
+See https://github.com/OCA/geospatial/tree/16.0/base_geoengine
+
+
+
 # Configuration
 
 In case of 413 Error during file uploading you many need to check configuration of your webserver. For example, for nginx you may need to add following instruction:

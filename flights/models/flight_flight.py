@@ -20,16 +20,18 @@ class FlightFlight(models.Model):
     arrival_id = fields.Many2one('flight.aerodrome')
     event_ids = fields.One2many('flight.event', 'flight_id')
 
-    parameter_ids = fields.One2Many()
+    param_ids = fields.One2many('flight.flight.param', 'flight_id')
 
 
+class FlightFlightParam(models.Model):
+    _name = 'flight.flight.param'
+
+    flight_id = fields.Many2one('flight.flight')
+    param_type_id = fields.Many2one('flight.flight.param.type')
+    value = fields.Float()
 
 
-FlightParameterType():
+class FlightFlightParamType(models.Model):
+    _name = 'flight.flight.param.type'
 
-hobbs_in
-hobbs_out
-oil_before
-oil_after
-fuel_before
-fiel_after
+    name = fields.Char()

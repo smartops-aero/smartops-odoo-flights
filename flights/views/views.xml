@@ -99,46 +99,51 @@
 
 
 
-    <!-- Define action for flight.airfield -->
-    <record id="action_flight_airfield" model="ir.actions.act_window">
-        <field name="name">Airfields</field>
-        <field name="res_model">flight.airfield</field>
+    <!-- Define action for flight.aerodrome -->
+    <record id="action_flight_aerodrome" model="ir.actions.act_window">
+        <field name="name">Aerodromes</field>
+        <field name="res_model">flight.aerodrome</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Define tree view for flight.airfield -->
-    <record id="view_flight_airfield_tree" model="ir.ui.view">
-        <field name="name">flight.airfield.tree</field>
-        <field name="model">flight.airfield</field>
+    <!-- Define tree view for flight.aerodrome -->
+    <record id="view_flight_aerodrome_tree" model="ir.ui.view">
+        <field name="name">flight.aerodrome.tree</field>
+        <field name="model">flight.aerodrome</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="code"/>
                 <field name="partner_id"/>
+                <field name="aerodrome_type"/>
+                <field name="icao"/>
+                <field name="iata"/>
+                <field name="elevation"/>
             </tree>
         </field>
     </record>
 
-    <!-- Define form view for flight.airfield -->
-    <record id="view_flight_airfield_form" model="ir.ui.view">
-        <field name="name">flight.airfield.form</field>
-        <field name="model">flight.airfield</field>
+    <!-- Define form view for flight.aerodrome -->
+    <record id="view_flight_aerodrome_form" model="ir.ui.view">
+        <field name="name">flight.aerodrome.form</field>
+        <field name="model">flight.aerodrome</field>
         <field name="arch" type="xml">
             <form>
                 <!-- Define form fields -->
                 <group>
-                    <field name="code"/>
                     <field name="partner_id"/>
-                    <field name="flight_source_id"/>
+                    <field name="aerodrome_type"/>
+                    <field name="icao"/>
+                    <field name="iata"/>
+                    <field name="elevation"/>
                 </group>
             </form>
         </field>
     </record>
 
-    <menuitem id="menu_flight_airfield" name="Airfields" parent="menu_flights_folder" action="action_flight_airfield" sequence="20"/>
+    <menuitem id="menu_flight_aerodrome" name="Aerodromes" parent="menu_flights_folder" action="action_flight_aerodrome" sequence="20"/>
 
     
 
-    <!-- Define action for flight.airfield -->
+    <!-- Define action for flight.aerodrome -->
     <record id="action_flight_data" model="ir.actions.act_window">
         <field name="name">Source Data</field>
         <field name="res_model">flight.data</field>

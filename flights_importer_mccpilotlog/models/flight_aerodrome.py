@@ -19,12 +19,12 @@ class FlightAerodrome(models.Model):
     #    "AFIATA": "NKT",
     #    "AFICAO": "LTCV",
     #    "AFName": "Sirnak Serafettin Elci",
-    #    "TZCode": 333,
+    #    "TZCode": 333, # TODO
     #    "Latitude": 37218,
     #    "ShowList": false,
     #    "AFCountry": 223,
     #    "Longitude": -42036,
-    #    "NotesUser": "ATIS 128.400",
+    #    "NotesUser": "ATIS 128.400",  # TODO
     #    "RegionUser": 0,
     #    "ElevationFT": 0,
     #    "Record_Modified": 1616320991
@@ -39,9 +39,12 @@ class FlightAerodrome(models.Model):
         partner = self.env["res.partner"]._sync_flight_data(flight_data, {
             # TODO: check mapping
             "name": meta.get("AFName"),
+            # TODO: fix geo modules installation
+            #"geo_point": "POINT(%s %s)" % (meta.get("Latitude", 0) / 1000, meta.get("Longitude", 0) / 1000),
         })
         return self._sync_flight_data(flight_data, {
-            # TODO: check mapping
             "iata": meta.get("AFIATA"),
+            "icao": meta.get("AFICAO"),
+            "elevation": meta.get("ElevationFT"),
             "partner_id": partner.id,
         })

@@ -44,7 +44,7 @@ class MagicWizard(models.TransientModel):
         SOURCE_TYPE = 'mccpilotlog'
         TABLE_MAP = {
             "aircraft": "flight.aircraft",
-            "airfield": "flight.airfield",
+            "airfield": "flight.aerodrome",
             "flight": "flight.flight",
             "pilot": "res.partner",
         }
@@ -69,7 +69,7 @@ class MagicWizard(models.TransientModel):
         # we may add a counter and make cr.commit() every 1000 records
         for flight_data in self.env['flight.data'].search([
                 ("source_type", "=", SOURCE_TYPE),
-                ("source_model", "in", ["flight.airfield", "flight.aircraft", "res.partner"]),
+                ("source_model", "in", ["flight.aerodrome", "flight.aircraft", "res.partner"]),
                 ("is_parsed", "=", False)
         ]):
             flight_data._data_parse()

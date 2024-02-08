@@ -1,0 +1,29 @@
+<odoo noupdate="1">
+    <!--
+        Copyright 2024 Apexive <https://apexive.com/>
+        License MIT (https://opensource.org/licenses/MIT).
+    -->
+    <record id="flight_param_type_hobbs_in" model="flight.flight.param.type">
+        <field name="name">Hobbs In</field>
+    </record>
+
+    <record id="flight_param_type_hobbs_out" model="flight.flight.param.type">
+        <field name="name">Hobbs Out</field>
+    </record>
+
+    <record id="flight_param_type_oil_before" model="flight.flight.param.type">
+        <field name="name">Oil Before</field>
+    </record>
+
+    <record id="flight_param_type_oil_after" model="flight.flight.param.type">
+        <field name="name">Oil After</field>
+    </record>
+
+    <record id="flight_param_type_fuel_before" model="flight.flight.param.type">
+        <field name="name">Fuel Before</field>
+    </record>
+
+    <record id="flight_param_type_fuel_after" model="flight.flight.param.type">
+        <field name="name">Fuel After</field>
+    </record>
+</odoo>

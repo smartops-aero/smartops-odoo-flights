@@ -1,7 +1,7 @@
 # Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
 import json
-from odoo import models
+from odoo import models, fields
 
 
 class FlightFlight(models.Model):
@@ -94,6 +94,15 @@ class FlightFlight(models.Model):
     def _parse_mccpilotlog(self, flight_data):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
-        # TODO
         return self._sync_flight_data(flight_data, {
+            "param_ids": [
+                fields.Command.create({
+                    "param_type_id": self.env.ref("flights.flight_param_type_hobbs_in").id,
+                    "value": meta.get("HobbsIn"),
+                }),
+                fields.Command.create({
+                    "param_type_id": self.env.ref("flights.flight_param_type_hobbs_out").id,
+                    "value": meta.get("HobbsOut"),
+                }),
+            ]
         })

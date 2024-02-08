@@ -1,8 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-flights.access_flight_airfield,access_flight_airfield,flights.model_flight_airfield,base.group_user,1,0,0,0
+flights.access_flight_aerodrome,access_flight_aerodrome,flights.model_flight_aerodrome,base.group_user,1,0,0,0
 flights.access_flight_aircraft,access_flight_aircraft,flights.model_flight_aircraft,base.group_user,1,0,0,0
 flights.access_flight_number,access_flight_number,flights.model_flight_number,base.group_user,1,0,0,0
-flights.access_flight_operator,access_flight_operator,flights.model_flight_operator,base.group_user,1,0,0,0
 flights.access_flight_crew,access_flight_crew,flights.model_flight_crew,base.group_user,1,0,0,0
 flights.access_flight_crew_role,access_flight_crew_role,flights.model_flight_crew_role,base.group_user,1,0,0,0
 flights.access_flight_flight,access_flight_flight,flights.model_flight_flight,base.group_user,1,0,0,0
@@ -10,10 +9,9 @@ flights.access_flight_event,access_flight_event,flights.model_flight_event,base.
 flights.access_flight_event_type,access_flight_event_type,flights.model_flight_event_type,base.group_user,1,0,0,0
 flights.access_flight_wizard,access_flight_wizard,flights.model_flight_wizard,base.group_user,1,0,0,0
 flights.access_flight_data,access_flight_data,flights.model_flight_data,base.group_user,1,0,0,0
-flights.access_flight_airfield,access_flight_airfield,flights.model_flight_airfield,base.group_system,1,1,1,1
+flights.access_flight_aerodrome,access_flight_aerodrome,flights.model_flight_aerodrome,base.group_system,1,1,1,1
 flights.access_flight_aircraft,access_flight_aircraft,flights.model_flight_aircraft,base.group_system,1,1,1,1
 flights.access_flight_number,access_flight_number,flights.model_flight_number,base.group_system,1,1,1,1
-flights.access_flight_operator,access_flight_operator,flights.model_flight_operator,base.group_system,1,1,1,1
 flights.access_flight_crew,access_flight_crew,flights.model_flight_crew,base.group_system,1,1,1,1
 flights.access_flight_crew_role,access_flight_crew_role,flights.model_flight_crew_role,base.group_system,1,1,1,1
 flights.access_flight_flight,access_flight_flight,flights.model_flight_flight,base.group_system,1,1,1,1
@@ -21,3 +19,15 @@ flights.access_flight_event,access_flight_event,flights.model_flight_event,base.
 flights.access_flight_event_type,access_flight_event_type,flights.model_flight_event_type,base.group_system,1,1,1,1
 flights.access_flight_wizard,access_flight_wizard,flights.model_flight_wizard,base.group_system,1,1,1,1
 flights.access_flight_data,access_flight_data,flights.model_flight_data,base.group_system,1,1,1,1
+flights.access_flight_aircraft_make,access_flight_aircraft_make,flights.model_flight_aircraft_make,base.group_user,1,0,0,0
+flights.access_flight_aircraft_model_tag,access_flight_aircraft_model_tag,flights.model_flight_aircraft_model_tag,base.group_user,1,0,0,0
+flights.access_flight_aircraft_model,access_flight_aircraft_model,flights.model_flight_aircraft_model,base.group_user,1,0,0,0
+flights.access_flight_flight_param,access_flight_flight_param,flights.model_flight_flight_param,base.group_user,1,0,0,0
+flights.access_flight_flight_param_type,access_flight_flight_param_type,flights.model_flight_flight_param_type,base.group_user,1,0,0,0
+flights.access_flight_prefix,access_flight_prefix,flights.model_flight_prefix,base.group_user,1,0,0,0
+flights.access_flight_aircraft_make,access_flight_aircraft_make,flights.model_flight_aircraft_make,base.group_system,1,1,1,1
+flights.access_flight_aircraft_model_tag,access_flight_aircraft_model_tag,flights.model_flight_aircraft_model_tag,base.group_system,1,1,1,1
+flights.access_flight_aircraft_model,access_flight_aircraft_model,flights.model_flight_aircraft_model,base.group_system,1,1,1,1
+flights.access_flight_flight_param,access_flight_flight_param,flights.model_flight_flight_param,base.group_system,1,1,1,1
+flights.access_flight_flight_param_type,access_flight_flight_param_type,flights.model_flight_flight_param_type,base.group_system,1,1,1,1
+flights.access_flight_prefix,access_flight_prefix,flights.model_flight_prefix,base.group_system,1,1,1,1

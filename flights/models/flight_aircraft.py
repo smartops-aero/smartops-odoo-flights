@@ -11,6 +11,7 @@ class FlightAircraftMake(models.Model):
 
 class FlightAircraftModelTag(models.Model):
     _name = 'flight.aircraft.model.tag'
+
     name = fields.Char()
 
     # Examples:
@@ -21,9 +22,10 @@ class FlightAircraftModelTag(models.Model):
 
 class FlightAircraftModel(models.Model):
     _name = 'flight.aircraft.model'
+
     name = fields.Char()
     make_id = fields.Many2one("flight.aircraft.make")
-    code = fields.Char("ICAO type code")
+    code = fields.Char("ICAO type code")  # TODO: can we just use name field for that ?
     tag_ids = fields.Many2many("flight.aircraft.model.tag")
 
     #  if   "Kg5700": is true - record 142000 lbs by defaukt as mtow (medium), otherwise record 12000 lbs by default (light)
@@ -39,8 +41,8 @@ class FlightAircraftModel(models.Model):
 
 
     # TODO(ivank): add class and category models as per below
-    # class_id = fields.Many2many()
-    # category_id = fields.Many2many()
+    # class_id = fields.Many2many()  # TODO: why not Selection / Integer ?
+    # category_id = fields.Many2many() # TODO: why not Selection ?
 
 
 class FlightAircraft(models.Model):
