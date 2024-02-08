@@ -7,8 +7,6 @@ from odoo import models
 class FlightAerodrome(models.Model):
     _inherit = 'flight.aerodrome'
 
-    # TODO(ivank):
-    #  type =  enum("Airport", "Aerodrome", "Seabase", "Heliport")
     # TODO(ivank): please ensure the importer saves all these fields in the partner_id
     # NotesUser will be extender by flights_pilotlog module with FlightsAerodromePilotNotes
     # {

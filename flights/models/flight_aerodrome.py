@@ -13,3 +13,9 @@ class FlightAerodrome(models.Model):
     icao = fields.Char("ICAO identifier", unique=True, blank=True)
     iata = fields.Char("IATA identifier", unique=True, blank=True)
     elevation = fields.Integer("Aerodrome elevation in feet")
+    aerodrome_type = fields.Selection([
+        ("airport", "Airport"),
+        ("aerodrome", "Aerodrome"),
+        ("seabase", "Seabase"),
+        ("heliport", "Heliport"),
+    ], "Type", required=True, default="aerodrome")
