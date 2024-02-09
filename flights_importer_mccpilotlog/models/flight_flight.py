@@ -129,6 +129,8 @@ class FlightFlight(models.Model):
                     "value": meta.get("HobbsOut"),
                 }),
             ],
+            "departure_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["DepCode"]),
+            "arrival_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["ArrCode"]),
         })
 
         for key, time_type in FLIGHT_TIME_MAP.items():
