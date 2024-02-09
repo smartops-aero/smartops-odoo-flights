@@ -55,8 +55,11 @@ class FlightAircraft(models.Model):
 
     _rec_name = 'registration'
 
-    registration = fields.Char("Aircraft registration", unique=True)
+    registration = fields.Char("Aircraft registration")
     sn = fields.Char("Aircraft serial number")
     year = fields.Date("Year of manufacture")
 
     model_id = fields.Many2one("flight.aircraft.model")
+    _sql_constraints = [
+        ("registration_unique", "unique(registration)", "Aircraft with this registration number already exists!")
+    ]

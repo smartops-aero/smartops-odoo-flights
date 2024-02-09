@@ -7,7 +7,7 @@ class FlightBase(models.AbstractModel):
     _name = 'flight.base'
     _description = 'Flight Base'
 
-    flight_source_id = fields.Many2one("flight.data", unique=True, required=False, readonly=True)
+    flight_source_id = fields.Many2one("flight.data", required=False, readonly=True)
 
     def _sync_flight_data(self, flight_data, vals):
         """Update record or create a new one"""
@@ -20,3 +20,6 @@ class FlightBase(models.AbstractModel):
             record = self.create(vals)
         flight_data.is_parsed = True
         return record
+    _sql_constraints = [
+        ("flight_source_id_unique", "unique(flight_source_id)", "Record with the same flight_source_id already exists!")
+    ]

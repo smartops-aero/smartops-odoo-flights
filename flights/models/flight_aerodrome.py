@@ -11,8 +11,8 @@ class FlightAerodrome(models.Model):
 
     partner_id = fields.Char("Address")
 
-    icao = fields.Char("ICAO identifier", unique=True, blank=True)
-    iata = fields.Char("IATA identifier", unique=True, blank=True)
+    icao = fields.Char("ICAO identifier")
+    iata = fields.Char("IATA identifier")
     elevation = fields.Integer("Aerodrome elevation in feet")
     aerodrome_type = fields.Selection([
         ("airport", "Airport"),
@@ -20,3 +20,8 @@ class FlightAerodrome(models.Model):
         ("seabase", "Seabase"),
         ("heliport", "Heliport"),
     ], "Type", required=True, default="aerodrome")
+
+    _sql_constraints = [
+        ("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
+        ("iata_unique", "unique(iata)", "Aerodrome with this IATA already exists!"),
+    ]
