@@ -6,6 +6,7 @@ from odoo import models, fields
 class FlightCrew(models.Model):
     _name = 'flight.crew'
     _inherit = 'flight.base'
+    _description = 'Crew Member'
 
     partner_id = fields.Many2one('res.partner')
     role_id = fields.Many2one('flight.crew.role')
@@ -14,6 +15,7 @@ class FlightCrew(models.Model):
 
 class FlightCrewRole(models.Model):
     _name = 'flight.crew.role'
+    _description = 'Crew Member Role'
 
     code = fields.Char()
     description = fields.Char()

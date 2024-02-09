@@ -6,15 +6,17 @@ from odoo import models, fields
 class FlightFlight(models.Model):
     _name = 'flight.flight'
     _inherit = 'flight.base'
+    _description = 'Flight'
+
     _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
 
     flight_number_id = fields.Many2one('flight.number')
-    operator = fields.Many2many("res.partner")
+    operator_id = fields.Many2one("res.partner", "Operator Company")
 
-    crew_ids = fields.One2many('flight.crew', 'flight_id')
-    pax_ids = fields.Many2many("res.partner", "flight_id")
+    crew_ids = fields.One2many('flight.crew', 'flight_id', "Crew")
+    pax_ids = fields.Many2many("res.partner", "flight_id", "Passengers")
 
     departure_id = fields.Many2one('flight.aerodrome')
     arrival_id = fields.Many2one('flight.aerodrome')
@@ -25,6 +27,8 @@ class FlightFlight(models.Model):
 
 class FlightFlightParam(models.Model):
     _name = 'flight.flight.param'
+    _inherit = 'flight.base'
+    _description = 'Flight Parameter'
 
     flight_id = fields.Many2one('flight.flight')
     param_type_id = fields.Many2one('flight.flight.param.type')
@@ -33,5 +37,6 @@ class FlightFlightParam(models.Model):
 
 class FlightFlightParamType(models.Model):
     _name = 'flight.flight.param.type'
+    _description = 'Flight Parameter Type'
 
     name = fields.Char()

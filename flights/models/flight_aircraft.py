@@ -5,12 +5,14 @@ from odoo import models, fields
 
 class FlightAircraftMake(models.Model):
     _name = 'flight.aircraft.make'
+    _description = 'Aircraft Make'
 
     name = fields.Char()
 
 
 class FlightAircraftModelTag(models.Model):
     _name = 'flight.aircraft.model.tag'
+    _description = 'Aircraft Model Tag'
 
     name = fields.Char()
 
@@ -22,6 +24,7 @@ class FlightAircraftModelTag(models.Model):
 
 class FlightAircraftModel(models.Model):
     _name = 'flight.aircraft.model'
+    _description = 'Aircraft Model'
 
     name = fields.Char()
     make_id = fields.Many2one("flight.aircraft.make")
@@ -48,6 +51,8 @@ class FlightAircraftModel(models.Model):
 class FlightAircraft(models.Model):
     _name = 'flight.aircraft'
     _inherit = 'flight.base'
+    _description = 'Aircraft'
+
     _rec_name = 'registration'
 
     registration = fields.Char("Aircraft registration", unique=True)

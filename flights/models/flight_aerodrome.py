@@ -7,6 +7,7 @@ from odoo import models, fields
 class FlightAerodrome(models.Model):
     _name = 'flight.aerodrome'
     _inherit = 'flight.base'
+    _description = 'Aerodrome'
 
     partner_id = fields.Char("Address")
 

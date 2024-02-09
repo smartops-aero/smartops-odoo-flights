@@ -4,7 +4,7 @@ from odoo import fields, models
 
 
 class FlightTime(models.Model):
-    """This model tracks records of Flight statistics.
+    """This model records Flight statistics.
 
     In aviation, pilots use logbooks to record flight statistics and flight
     time. These logbooks are essential for tracking their flying experience,
@@ -31,6 +31,7 @@ class FlightTime(models.Model):
     """
 
     _name = 'flight.time'
+    _description = 'Flight Statistics'
 
     flight_id = fields.Many2one('flight.flight', 'Flight')
     partner_id = fields.Many2many('res.partner', 'Pilot')
@@ -40,6 +41,8 @@ class FlightTime(models.Model):
 
 class FlightTimeType(models.Model):
     _name = 'flight.time.type'
+    _inherit = 'flight.base'
+    _description = 'Flight Statistics Type'
 
     name = fields.Char("Code")
     description = fields.Char("Full name")

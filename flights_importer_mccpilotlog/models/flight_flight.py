@@ -1,7 +1,8 @@
 # Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
 import json
-from odoo import models, fields
+from odoo import models
+
 
 FLIGHT_TIME_MAP = {
     "minU1": "flight_pilotlog.flight_time_type_u1",

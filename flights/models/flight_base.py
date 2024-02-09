@@ -5,6 +5,7 @@ from odoo import models, fields
 
 class FlightBase(models.AbstractModel):
     _name = 'flight.base'
+    _description = 'Flight Base'
 
     flight_source_id = fields.Many2one("flight.data", unique=True, required=False, readonly=True)
 

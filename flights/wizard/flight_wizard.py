@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 class MagicWizard(models.TransientModel):
 
     _name = 'flight.wizard'
+    _description = 'Flight Importer'
 
     action = fields.Selection([
     ], "Supported formats")

@@ -9,12 +9,12 @@
     # for the full list
     'category': 'Industries',
     'version': '16.0.0.1',
+    'license': "Other OSI approved licence",  # MIT
 
     # any module necessary for this one to work correctly
     'depends': [
         'base',
-        # FIXME: the dependency is not ready
-        # 'flights_pilotlog'
+        'flights_pilotlog'
     ],
 
     # always loaded
