@@ -115,8 +115,8 @@ class FlightFlight(models.Model):
     def _parse_mccpilotlog(self, flight_data):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
-        # TODO: how to get partner?
-        partner = self.env.user.partner_id # FIXME!
+
+        pilot = self.env['res.partner']._search_mccpilotlog(meta['P1Code'])
 
         flight = self._sync_flight_data(flight_data, {
             "param_ids": [
@@ -128,12 +128,23 @@ class FlightFlight(models.Model):
                     "param_type_id": self.env.ref("flights.flight_param_type_hobbs_out").id,
                     "value": meta.get("HobbsOut"),
                 }),
-            ]
+            ],
         })
+
         for key, time_type in FLIGHT_TIME_MAP.items():
             self.env['flight.time']._sync_flight_data(flight_data, {
                 'flight_id': flight.id,
-                'partner_id': partner.id,
+                'partner_id': pilot.id,
                 'time_type_id': self.env.ref(time_type).id,
                 'minutes': meta.get(key, 0),
+            })
+
+        crew = [self.env['res.partner']._search_mccpilotlog(meta[key]) for key in ("P2Code", "P3Code", "P4Code")]
+        crew = [pilot] + [another_pilot for another_pilot in crew if another_pilot]
+        role_pilot = self.env.ref("flights.flight_crew_role_pilot")
+        for partner in crew:
+            self.env['flight.crew']._sync_flight_data(flight_data, {
+                'flight_id': flight.id,
+                'partner_id': partner.id,
+                'role_id': role_pilot.id,
             })

@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <!--
+        Copyright 2024 Apexive <https://apexive.com/>
+        License MIT (https://opensource.org/licenses/MIT).
+    -->
+    <record id="flight_crew_role_pilot" model="flight.crew.role">
+        <field name="name">Pilot</field>
+    </record>
+</odoo>

@@ -8,6 +8,7 @@ from odoo import fields, models
 
 
 _logger = logging.getLogger(__name__)
+SOURCE_TYPE = 'mccpilotlog'
 
 
 class MagicWizard(models.TransientModel):
@@ -41,7 +42,6 @@ class MagicWizard(models.TransientModel):
             return self.env['flight.data'].create(vals)
 
     def do_mccpilotlog(self):
-        SOURCE_TYPE = 'mccpilotlog'
         TABLE_MAP = {
             "aircraft": "flight.aircraft",
             "airfield": "flight.aerodrome",

@@ -24,23 +24,6 @@ class FlightPrefix(models.Model):
     description = fields.Char()
 
 
-class FlightCrew(models.Model):
-    _name = 'flight.crew'
-    _inherit = 'flight.base'
-
-    partner_id = fields.Many2one('res.partner')
-    role_id = fields.Many2one('flight.crew.role')
-    flight_id = fields.Many2one('flight.flight')
-
-
-class FlightCrewRole(models.Model):
-    _name = 'flight.crew.role'
-    _inherit = 'flight.base'
-
-    code = fields.Char()
-    description = fields.Char()
-
-
 class FlightEvent(models.Model):
     _name = 'flight.event'
     _inherit = 'flight.base'
