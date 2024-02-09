@@ -39,10 +39,11 @@ class FlightData(models.Model):
         else:
             raise NotImplementedError()
 
-    def _search_linked_record(self, model):
+    @property
+    def linked_record(self):
         """Find a record that was created from this Data"""
         self.ensure_one()
-        return model.search([
+        return self.env[self.source_model].search([
             ("flight_source_id", "=", self.id)
         ], limit=1)
 

@@ -12,7 +12,7 @@ class FlightBase(models.AbstractModel):
         """Update record or create a new one"""
         if "flight_source_id" not in vals:
             vals["flight_source_id"] = flight_data.id
-        record = flight_data._search_linked_record(self)
+        record = flight_data.linked_record(self)
         if record:
             record.write(vals)
         else:
