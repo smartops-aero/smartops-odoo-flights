@@ -3,26 +3,20 @@
         Copyright 2024 Apexive <https://apexive.com/>
         License MIT (https://opensource.org/licenses/MIT).
     -->
-
     <!-- Condition Time -->
-    <record id="flight_time_type_u1" model="flight.time.type">
-        <field name="name">U1</field>
-        <field name="description">Basic Training</field>
+    <record id="flight_time_type_ifr" model="flight.time.type">
+        <field name="name">IFR</field>
+        <field name="description">Instrument Flight Rules</field>
         <field name="group">condition</field>
     </record>
-    <record id="flight_time_type_u2" model="flight.time.type">
-        <field name="name">U2</field>
-        <field name="description">Advanced Training</field>
+    <record id="flight_time_type_imt" model="flight.time.type">
+        <field name="name">IMT</field>
+        <field name="description">Simulated Instrument Conditions</field>
         <field name="group">condition</field>
     </record>
-    <record id="flight_time_type_u3" model="flight.time.type">
-        <field name="name">U3</field>
-        <field name="description">Specialized Training</field>
-        <field name="group">condition</field>
-    </record>
-    <record id="flight_time_type_u4" model="flight.time.type">
-        <field name="name">U4</field>
-        <field name="description">Instructor Training</field>
+    <record id="flight_time_type_night" model="flight.time.type">
+        <field name="name">NIGHT</field>
+        <field name="description">Night Flight</field>
         <field name="group">condition</field>
     </record>
     <record id="flight_time_type_xc" model="flight.time.type">
@@ -30,8 +24,33 @@
         <field name="description">Cross-Country Flight</field>
         <field name="group">condition</field>
     </record>
-    
+
     <!-- Function Time -->
+    <record id="flight_time_type_instr" model="flight.time.type">
+        <field name="name">INSTR</field>
+        <field name="description">Flight Instructor</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u1" model="flight.time.type">
+        <field name="name">U1</field>
+        <field name="description">Basic Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u2" model="flight.time.type">
+        <field name="name">U2</field>
+        <field name="description">Advanced Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u3" model="flight.time.type">
+        <field name="name">U3</field>
+        <field name="description">Specialized Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u4" model="flight.time.type">
+        <field name="name">U4</field>
+        <field name="description">Instructor Training</field>
+        <field name="group">function</field>
+    </record>
     <record id="flight_time_type_air" model="flight.time.type">
         <field name="name">AIR</field>
         <field name="description">Aircraft Time</field>
@@ -40,16 +59,6 @@
     <record id="flight_time_type_cop" model="flight.time.type">
         <field name="name">COP</field>
         <field name="description">Co-Pilot</field>
-        <field name="group">function</field>
-    </record>
-    <record id="flight_time_type_ifr" model="flight.time.type">
-        <field name="name">IFR</field>
-        <field name="description">Instrument Flight Rules</field>
-        <field name="group">function</field>
-    </record>
-    <record id="flight_time_type_imt" model="flight.time.type">
-        <field name="name">IMT</field>
-        <field name="description">Simulated Instrument Conditions</field>
         <field name="group">function</field>
     </record>
     <record id="flight_time_type_pic" model="flight.time.type">
@@ -75,16 +84,6 @@
     <record id="flight_time_type_exam" model="flight.time.type">
         <field name="name">EXAM</field>
         <field name="description">Examination</field>
-        <field name="group">function</field>
-    </record>
-    <record id="flight_time_type_instr" model="flight.time.type">
-        <field name="name">INSTR</field>
-        <field name="description">Flight Instructor</field>
-        <field name="group">function</field>
-    </record>
-    <record id="flight_time_type_night" model="flight.time.type">
-        <field name="name">NIGHT</field>
-        <field name="description">Night Flight</field>
         <field name="group">function</field>
     </record>
     <record id="flight_time_type_picus" model="flight.time.type">
