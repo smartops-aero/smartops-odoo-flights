@@ -119,18 +119,19 @@ class FlightFlight(models.Model):
         pilot = self.env['res.partner']._search_mccpilotlog(meta['P1Code'])
 
         flight = self._sync_flight_data(flight_data, {
-            "param_ids": [
-                fields.Command.create({
-                    "param_type_id": self.env.ref("flights.flight_param_type_hobbs_in").id,
-                    "value": meta.get("HobbsIn"),
-                }),
-                fields.Command.create({
-                    "param_type_id": self.env.ref("flights.flight_param_type_hobbs_out").id,
-                    "value": meta.get("HobbsOut"),
-                }),
-            ],
             "departure_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["DepCode"]),
             "arrival_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["ArrCode"]),
+        })
+
+        self.env['flight.flight.param']._sync_flight_data(flight_data, {
+            "flight_id": flight,
+            "param_type_id": self.env.ref("flights.flight_param_type_hobbs_in").id,
+            "value": meta.get("HobbsIn"),
+        })
+        self.env['flight.flight.param']._sync_flight_data(flight_data, {
+            "flight_id": flight,
+            "param_type_id": self.env.ref("flights.flight_param_type_hobbs_out").id,
+            "value": meta.get("HobbsOut"),
         })
 
         for key, time_type in FLIGHT_TIME_MAP.items():
