@@ -1,0 +1,32 @@
+<odoo><!--
+          Copyright 2024 Apexive <https://apexive.com/>
+          License MIT (https://opensource.org/licenses/MIT).
+       -->
+
+    <record id="view_flight_wizard_form" model="ir.ui.view">
+        <field name="name">flight.wizard.form</field>
+        <field name="model">flight.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="action" widget="selection"/>
+                    <field name="filename" invisible="1"/>
+                    <field name="payload" filename="filename"/>
+                </group>
+                <footer>
+                    <button string="Process" type="object" class="oe_highlight" name="do_action"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_upload_pilot_log" model="ir.actions.act_window">
+        <field name="name">Upload Pilot Log</field>
+        <field name="res_model">flight.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_flight_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

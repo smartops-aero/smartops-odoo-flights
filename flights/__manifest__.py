@@ -9,8 +9,9 @@
         Base module to manage flights and related data
     """,
 
-    'author': "Apexive Studio LLC & Ivan Kropotkin",
+    'author': "Apexive Studio LLC, Ivan Elizaryev",
     'website': "https://apexive.com",
+    'license': "Other OSI approved licence",  # MIT
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -19,13 +20,20 @@
     'version': '16.0.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': [
+        'base',
+        # FIXME: need installation instruction
+        # 'geoengine_partner'
+    ],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        'wizard/flight_wizard_views.xml',
         'views/views.xml',
         'views/templates.xml',
+        'data/flight_flight_param_type_data.xml',
+        'data/flight_crew_role_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

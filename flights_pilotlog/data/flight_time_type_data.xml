@@ -1,0 +1,99 @@
+<odoo noupdate="1">
+    <!--
+        Copyright 2024 Apexive <https://apexive.com/>
+        License MIT (https://opensource.org/licenses/MIT).
+    -->
+    <!-- Condition Time -->
+    <record id="flight_time_type_ifr" model="flight.time.type">
+        <field name="name">IFR</field>
+        <field name="description">Instrument Flight Rules</field>
+        <field name="group">condition</field>
+    </record>
+    <record id="flight_time_type_imt" model="flight.time.type">
+        <field name="name">IMT</field>
+        <field name="description">Simulated Instrument Conditions</field>
+        <field name="group">condition</field>
+    </record>
+    <record id="flight_time_type_night" model="flight.time.type">
+        <field name="name">NIGHT</field>
+        <field name="description">Night Flight</field>
+        <field name="group">condition</field>
+    </record>
+    <record id="flight_time_type_xc" model="flight.time.type">
+        <field name="name">XC</field>
+        <field name="description">Cross-Country Flight</field>
+        <field name="group">condition</field>
+    </record>
+
+    <!-- Function Time -->
+    <record id="flight_time_type_instr" model="flight.time.type">
+        <field name="name">INSTR</field>
+        <field name="description">Flight Instructor</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u1" model="flight.time.type">
+        <field name="name">U1</field>
+        <field name="description">Basic Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u2" model="flight.time.type">
+        <field name="name">U2</field>
+        <field name="description">Advanced Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u3" model="flight.time.type">
+        <field name="name">U3</field>
+        <field name="description">Specialized Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_u4" model="flight.time.type">
+        <field name="name">U4</field>
+        <field name="description">Instructor Training</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_air" model="flight.time.type">
+        <field name="name">AIR</field>
+        <field name="description">Aircraft Time</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_cop" model="flight.time.type">
+        <field name="name">COP</field>
+        <field name="description">Co-Pilot</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_pic" model="flight.time.type">
+        <field name="name">PIC</field>
+        <field name="description">Pilot in Command</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_rel" model="flight.time.type">
+        <field name="name">REL</field>
+        <field name="description">Relief Pilot</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_sfr" model="flight.time.type">
+        <field name="name">SFR</field>
+        <field name="description">Safety Pilot</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_dual" model="flight.time.type">
+        <field name="name">DUAL</field>
+        <field name="description">Dual Instruction</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_exam" model="flight.time.type">
+        <field name="name">EXAM</field>
+        <field name="description">Examination</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_picus" model="flight.time.type">
+        <field name="name">PICUS</field>
+        <field name="description">Pilot in Command Under Supervision</field>
+        <field name="group">function</field>
+    </record>
+    <record id="flight_time_type_total" model="flight.time.type">
+        <field name="name">TOTAL</field>
+        <field name="description">Total Flight Time</field>
+        <field name="group">function</field>
+    </record>
+</odoo>
