@@ -128,13 +128,13 @@ class FlightFlight(models.Model):
             "flight_id": flight.id,
             "param_type_id": self.env.ref("flights.flight_param_type_hobbs_in").id,
             "value": meta.get("HobbsIn"),
-        })
+        }, "hobbs_in")
 
         self.env['flight.flight.param']._sync_flight_data(flight_data, {
             "flight_id": flight.id,
             "param_type_id": self.env.ref("flights.flight_param_type_hobbs_out").id,
             "value": meta.get("HobbsOut"),
-        })
+        }, "hobbs_out")
 
         for key, time_type in FLIGHT_TIME_MAP.items():
             self.env['flight.time']._sync_flight_data(flight_data, {
@@ -142,7 +142,7 @@ class FlightFlight(models.Model):
                 'partner_id': pilot.id,
                 'time_type_id': self.env.ref(time_type).id,
                 'minutes': meta.get(key, 0),
-            })
+            }, key)
 
         crew = [self.env['res.partner']._search_mccpilotlog(meta[key]) for key in ("P2Code", "P3Code", "P4Code")]
         crew = [pilot] + [another_pilot for another_pilot in crew if another_pilot]
