@@ -1,5 +1,33 @@
-<odoo>
-  <data>
+<odoo><!--
+          Copyright 2024 Apexive <https://apexive.com/>
+          License MIT (https://opensource.org/licenses/MIT).
+       -->
+    <record id="view_flight_flight_form" model="ir.ui.view">
+        <field name="name">flight.flight.form</field>
+        <field name="model">flight.flight</field>
+        <field name="inherit_id" ref="flights.view_flight_flight_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Statistics">
+                    <field name="condition_time_ids">
+                        <tree>
+                            <field name="partner_id"/>
+                            <field name="time_type_id"/>
+                            <field name="minutes"/>
+                        </tree>
+                    </field>
+                    <field name="pilot_time_ids">
+                        <tree>
+                            <field name="partner_id"/>
+                            <field name="time_type_id"/>
+                            <field name="minutes"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
     <!-- explicit list view definition -->
 <!--
     <record model="ir.ui.view" id="flights_pilotlog.list">
@@ -56,5 +84,4 @@
     <menuitem name="Server to list" id="flights_pilotlog" parent="flights_pilotlog.menu_2"
               action="flights_pilotlog.action_server"/>
 -->
-  </data>
 </odoo>

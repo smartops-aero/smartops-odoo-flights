@@ -49,10 +49,29 @@
                     <group>
                         <field name="aircraft_id"/>
                         <field name="flight_number_id"/>
+                        <field name="operator_id"/>
                         <field name="departure_id"/>
                         <field name="arrival_id"/>
                         <field name="flight_source_id"/>
                     </group>
+                    <notebook>
+                        <page string="Parameters">
+                            <field name="param_ids">
+                                <tree>
+                                    <field name="param_type_id"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Crew">
+                            <field name="crew_ids">
+                                <tree>
+                                    <field name="role_id"/>
+                                    <field name="partner_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
