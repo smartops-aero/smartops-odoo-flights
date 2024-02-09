@@ -16,7 +16,7 @@ class FlightFlight(models.Model):
     operator_id = fields.Many2one("res.partner", "Operator Company")
 
     crew_ids = fields.One2many('flight.crew', 'flight_id', "Crew")
-    pax_ids = fields.Many2many("res.partner", "flight_id", "Passengers")
+    pax_ids = fields.Many2many("res.partner", string="Passengers")
 
     departure_id = fields.Many2one('flight.aerodrome')
     arrival_id = fields.Many2one('flight.aerodrome')

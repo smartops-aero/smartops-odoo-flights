@@ -17,5 +17,5 @@ class FlightCrewRole(models.Model):
     _name = 'flight.crew.role'
     _description = 'Crew Member Role'
 
-    code = fields.Char()
+    name = fields.Char()
     description = fields.Char()
