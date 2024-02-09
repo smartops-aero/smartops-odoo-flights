@@ -26,6 +26,7 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'data/flight_time_type_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
