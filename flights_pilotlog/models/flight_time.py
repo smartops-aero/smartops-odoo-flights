@@ -31,17 +31,17 @@ class FlightTime(models.Model):
     """
 
     _name = 'flight.time'
+    _inherit = 'flight.base'
     _description = 'Flight Statistics'
 
     flight_id = fields.Many2one('flight.flight', 'Flight')
-    partner_id = fields.Many2many('res.partner', 'Pilot')
+    partner_id = fields.Many2one('res.partner', 'Pilot')
     time_type_id = fields.Many2one('flight.time.type')
     minutes = fields.Integer("Number of minutes")
 
 
 class FlightTimeType(models.Model):
     _name = 'flight.time.type'
-    _inherit = 'flight.base'
     _description = 'Flight Statistics Type'
 
     name = fields.Char("Code")

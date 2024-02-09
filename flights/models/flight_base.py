@@ -13,13 +13,14 @@ class FlightBase(models.AbstractModel):
         """Update record or create a new one"""
         if "flight_source_id" not in vals:
             vals["flight_source_id"] = flight_data.id
-        record = flight_data.linked_record(self)
+        record = flight_data._get_linked_record(self)
         if record:
             record.write(vals)
         else:
             record = self.create(vals)
         flight_data.is_parsed = True
         return record
+
     _sql_constraints = [
         ("flight_source_id_unique", "unique(flight_source_id)", "Record with the same flight_source_id already exists!")
     ]

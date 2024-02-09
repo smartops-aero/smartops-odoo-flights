@@ -17,7 +17,7 @@ class FlightData(models.Model):
     _description = 'Flight Data Source'
 
     source_type = fields.Char(required=True)
-    source_model = fields.Char(required=True)
+    source_model = fields.Char("Model", required=True, help="Main Odoo model that processes this data")
     source_ref = fields.Char(required=True)
     raw_text = fields.Text(required=True)
     is_parsed = fields.Boolean("Parsed", default=False)
@@ -39,11 +39,10 @@ class FlightData(models.Model):
         else:
             raise NotImplementedError()
 
-    @property
-    def linked_record(self):
+    def _get_linked_record(self, model):
         """Find a record that was created from this Data"""
         self.ensure_one()
-        return self.env[self.source_model].search([
+        return model.search([
             ("flight_source_id", "=", self.id)
         ], limit=1)
 

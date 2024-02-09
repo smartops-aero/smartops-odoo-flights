@@ -5,24 +5,24 @@ from odoo import models
 
 
 FLIGHT_TIME_MAP = {
-    "minU1": "flight_pilotlog.flight_time_type_u1",
-    "minU2": "flight_pilotlog.flight_time_type_u2",
-    "minU3": "flight_pilotlog.flight_time_type_u3",
-    "minU4": "flight_pilotlog.flight_time_type_u4",
-    "minXC": "flight_pilotlog.flight_time_type_xc",
-    "minAIR": "flight_pilotlog.flight_time_type_air",
-    "minCOP": "flight_pilotlog.flight_time_type_cop",
-    "minIFR": "flight_pilotlog.flight_time_type_ifr",
-    "minIMT": "flight_pilotlog.flight_time_type_imt",
-    "minPIC": "flight_pilotlog.flight_time_type_pic",
-    "minREL": "flight_pilotlog.flight_time_type_rel",
-    "minSFR": "flight_pilotlog.flight_time_type_sfr",
-    "minDUAL": "flight_pilotlog.flight_time_type_dual",
-    "minEXAM": "flight_pilotlog.flight_time_type_exam",
-    "minINSTR": "flight_pilotlog.flight_time_type_instr",
-    "minNIGHT": "flight_pilotlog.flight_time_type_night",
-    "minPICUS": "flight_pilotlog.flight_time_type_picus",
-    "minTOTAL": "flight_pilotlog.flight_time_type_total",
+    "minU1": "flights_pilotlog.flight_time_type_u1",
+    "minU2": "flights_pilotlog.flight_time_type_u2",
+    "minU3": "flights_pilotlog.flight_time_type_u3",
+    "minU4": "flights_pilotlog.flight_time_type_u4",
+    "minXC": "flights_pilotlog.flight_time_type_xc",
+    "minAIR": "flights_pilotlog.flight_time_type_air",
+    "minCOP": "flights_pilotlog.flight_time_type_cop",
+    "minIFR": "flights_pilotlog.flight_time_type_ifr",
+    "minIMT": "flights_pilotlog.flight_time_type_imt",
+    "minPIC": "flights_pilotlog.flight_time_type_pic",
+    "minREL": "flights_pilotlog.flight_time_type_rel",
+    "minSFR": "flights_pilotlog.flight_time_type_sfr",
+    "minDUAL": "flights_pilotlog.flight_time_type_dual",
+    "minEXAM": "flights_pilotlog.flight_time_type_exam",
+    "minINSTR": "flights_pilotlog.flight_time_type_instr",
+    "minNIGHT": "flights_pilotlog.flight_time_type_night",
+    "minPICUS": "flights_pilotlog.flight_time_type_picus",
+    "minTOTAL": "flights_pilotlog.flight_time_type_total",
 }
 
 
@@ -120,17 +120,18 @@ class FlightFlight(models.Model):
         pilot = self.env['res.partner']._search_mccpilotlog(meta['P1Code'])
 
         flight = self._sync_flight_data(flight_data, {
-            "departure_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["DepCode"]),
-            "arrival_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["ArrCode"]),
+            "departure_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["DepCode"]).id,
+            "arrival_id": self.env["flight.aerodrome"]._search_mccpilotlog(meta["ArrCode"]).id,
         })
 
         self.env['flight.flight.param']._sync_flight_data(flight_data, {
-            "flight_id": flight,
+            "flight_id": flight.id,
             "param_type_id": self.env.ref("flights.flight_param_type_hobbs_in").id,
             "value": meta.get("HobbsIn"),
         })
+
         self.env['flight.flight.param']._sync_flight_data(flight_data, {
-            "flight_id": flight,
+            "flight_id": flight.id,
             "param_type_id": self.env.ref("flights.flight_param_type_hobbs_out").id,
             "value": meta.get("HobbsOut"),
         })

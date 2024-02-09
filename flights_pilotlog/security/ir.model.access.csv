@@ -1,7 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_flights_pilotlog_flights_pilotlog,flights_pilotlog.flights_pilotlog,model_flights_pilotlog_flights_pilotlog,base.group_user,1,0,0,0
 access_flight_time,access_flight_time,flights_pilotlog.model_flight_time,base.group_user,1,0,0,0
-access_flight_time_type,access_flight_time_type,flights_pilotlog.model_flight_time_type,base.group_user,1,0,0,0 
-admin_access_flights_pilotlog_flights_pilotlog,admin_access_flights_pilotlog,model_flights_pilotlog_flights_pilotlog,base.group_user,1,1,1,1
-admin_access_flight_time,admin_access_flight_time,model_flight_time,base.group_user,1,1,1,1
+access_flight_time_type,access_flight_time_type,flights_pilotlog.model_flight_time_type,base.group_user,1,0,0,0
+admin_access_flight_time,admin_access_flight_time,flights_pilotlog.model_flight_time,base.group_user,1,1,1,1
 admin_access_flight_time_type,admin_access_flight_time_type,flights_pilotlog.model_flight_time_type,base.group_user,1,1,1,1

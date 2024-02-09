@@ -22,6 +22,7 @@ class FlightAerodrome(models.Model):
     ], "Type", required=True, default="aerodrome")
 
     _sql_constraints = [
-        ("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
-        ("iata_unique", "unique(iata)", "Aerodrome with this IATA already exists!"),
+        # TODO: this doesn't work with null values
+        #("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
+        #("iata_unique", "unique(iata)", "Aerodrome with this IATA already exists!"),
     ]
