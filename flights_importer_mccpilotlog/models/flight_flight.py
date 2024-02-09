@@ -3,6 +3,27 @@
 import json
 from odoo import models, fields
 
+FLIGHT_TIME_MAP = {
+    "minU1": "flight_pilotlog.flight_time_type_u1",
+    "minU2": "flight_pilotlog.flight_time_type_u2",
+    "minU3": "flight_pilotlog.flight_time_type_u3",
+    "minU4": "flight_pilotlog.flight_time_type_u4",
+    "minXC": "flight_pilotlog.flight_time_type_xc",
+    "minAIR": "flight_pilotlog.flight_time_type_air",
+    "minCOP": "flight_pilotlog.flight_time_type_cop",
+    "minIFR": "flight_pilotlog.flight_time_type_ifr",
+    "minIMT": "flight_pilotlog.flight_time_type_imt",
+    "minPIC": "flight_pilotlog.flight_time_type_pic",
+    "minREL": "flight_pilotlog.flight_time_type_rel",
+    "minSFR": "flight_pilotlog.flight_time_type_sfr",
+    "minDUAL": "flight_pilotlog.flight_time_type_dual",
+    "minEXAM": "flight_pilotlog.flight_time_type_exam",
+    "minINSTR": "flight_pilotlog.flight_time_type_instr",
+    "minNIGHT": "flight_pilotlog.flight_time_type_night",
+    "minPICUS": "flight_pilotlog.flight_time_type_picus",
+    "minTOTAL": "flight_pilotlog.flight_time_type_total",
+}
+
 
 class FlightFlight(models.Model):
     _inherit = 'flight.flight'
@@ -94,7 +115,10 @@ class FlightFlight(models.Model):
     def _parse_mccpilotlog(self, flight_data):
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
-        return self._sync_flight_data(flight_data, {
+        # TODO: how to get partner?
+        partner = self.env.user.partner_id # FIXME!
+
+        flight = self._sync_flight_data(flight_data, {
             "param_ids": [
                 fields.Command.create({
                     "param_type_id": self.env.ref("flights.flight_param_type_hobbs_in").id,
@@ -106,3 +130,10 @@ class FlightFlight(models.Model):
                 }),
             ]
         })
+        for key, time_type in FLIGHT_TIME_MAP.items():
+            self.env['flight.time']._sync_flight_data(flight_data, {
+                'flight_id': flight.id,
+                'partner_id': partner.id,
+                'time_type_id': self.env.ref(time_type).id,
+                'minutes': meta.get(key, 0),
+            })
