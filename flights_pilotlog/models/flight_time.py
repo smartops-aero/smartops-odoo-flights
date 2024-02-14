@@ -3,7 +3,7 @@
 from odoo import fields, models
 
 
-class FlightTime(models.Model):
+class FlightPilotTime(models.Model):
     """This model records Flight statistics.
 
     In aviation, pilots use logbooks to record flight statistics and flight
@@ -32,21 +32,21 @@ class FlightTime(models.Model):
 
     _name = 'flight.time'
     _inherit = 'flight.base'
-    _description = 'Flight Statistics'
+    _description = 'Pilot Flight Time'
 
     flight_id = fields.Many2one('flight.flight', 'Flight')
     partner_id = fields.Many2one('res.partner', 'Pilot')
-    time_type_id = fields.Many2one('flight.time.type')
+    time_type_id = fields.Many2one('flight.time.kind')
     minutes = fields.Integer("Number of minutes")
 
 
-class FlightTimeType(models.Model):
-    _name = 'flight.time.type'
+class FlightTimeKind(models.Model):
+    _name = 'flight.time.kind'
     _description = 'Flight Statistics Type'
 
     name = fields.Char("Code")
-    description = fields.Char("Full name")
-    group = fields.Selection([
-        ("condition", "Condition time"),
-        ("function", "Function time"),
-    ])
+    description = fields.Char("Description")
+# group = fields.Selection([
+#     ("condition", "Condition time"),
+#     ("function", "Function time"),
+# ])
