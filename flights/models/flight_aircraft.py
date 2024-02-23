@@ -18,8 +18,8 @@ class FlightAircraftModelTag(models.Model):
 
     # Examples:
     # retractable, high performance, pressurized, taa, propeller, turbine, jet, efis, aerobatic, tailwheel
-    # turboprop will have turbiane and propeller
-    # turbojet will have turbine and jet
+    # turboprop will have turbine and propeller = turboprop
+    # turbojet will have turbine and jet = turbofan
 
 
 class FlightAircraftModel(models.Model):
