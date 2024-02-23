@@ -7,4 +7,4 @@ from . import flight_aircraft
 from . import flight_data
 from . import flight_flight
 from . import flight_crew
-from . import models
+from . import flight_event
