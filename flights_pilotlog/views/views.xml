@@ -9,17 +9,10 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Statistics">
-                    <field name="condition_time_ids">
-                        <tree>
-                            <field name="partner_id"/>
-                            <field name="time_type_id"/>
-                            <field name="minutes"/>
-                        </tree>
-                    </field>
                     <field name="pilot_time_ids">
                         <tree>
                             <field name="partner_id"/>
-                            <field name="time_type_id"/>
+                            <field name="time_kind_id"/>
                             <field name="minutes"/>
                         </tree>
                     </field>

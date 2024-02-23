@@ -5,24 +5,24 @@ from odoo import models
 
 
 FLIGHT_TIME_MAP = {
-    "minU1": "flights_pilotlog.flight_time_type_u1",
-    "minU2": "flights_pilotlog.flight_time_type_u2",
-    "minU3": "flights_pilotlog.flight_time_type_u3",
-    "minU4": "flights_pilotlog.flight_time_type_u4",
-    "minXC": "flights_pilotlog.flight_time_type_xc",
-    "minAIR": "flights_pilotlog.flight_time_type_air",
-    "minCOP": "flights_pilotlog.flight_time_type_cop",
-    "minIFR": "flights_pilotlog.flight_time_type_ifr",
-    "minIMT": "flights_pilotlog.flight_time_type_imt",
-    "minPIC": "flights_pilotlog.flight_time_type_pic",
-    "minREL": "flights_pilotlog.flight_time_type_rel",
-    "minSFR": "flights_pilotlog.flight_time_type_sfr",
-    "minDUAL": "flights_pilotlog.flight_time_type_dual",
-    "minEXAM": "flights_pilotlog.flight_time_type_exam",
-    "minINSTR": "flights_pilotlog.flight_time_type_instr",
-    "minNIGHT": "flights_pilotlog.flight_time_type_night",
-    "minPICUS": "flights_pilotlog.flight_time_type_picus",
-    "minTOTAL": "flights_pilotlog.flight_time_type_total",
+    "minU1": "flights_pilotlog.flight_time_kind_u1",
+    "minU2": "flights_pilotlog.flight_time_kind_u2",
+    "minU3": "flights_pilotlog.flight_time_kind_u3",
+    "minU4": "flights_pilotlog.flight_time_kind_u4",
+    "minXC": "flights_pilotlog.flight_time_kind_xc",
+    "minAIR": "flights_pilotlog.flight_time_kind_air",
+    "minCOP": "flights_pilotlog.flight_time_kind_cop",
+    "minIFR": "flights_pilotlog.flight_time_kind_ifr",
+    "minIMT": "flights_pilotlog.flight_time_kind_imt",
+    "minPIC": "flights_pilotlog.flight_time_kind_pic",
+    "minREL": "flights_pilotlog.flight_time_kind_rel",
+    "minSFR": "flights_pilotlog.flight_time_kind_sfr",
+    "minDUAL": "flights_pilotlog.flight_time_kind_dual",
+    "minEXAM": "flights_pilotlog.flight_time_kind_exam",
+    "minINSTR": "flights_pilotlog.flight_time_kind_instr",
+    "minNIGHT": "flights_pilotlog.flight_time_kind_night",
+    "minPICUS": "flights_pilotlog.flight_time_kind_picus",
+    "minTOTAL": "flights_pilotlog.flight_time_kind_total",
 }
 
 
@@ -136,11 +136,11 @@ class FlightFlight(models.Model):
             "value": meta.get("HobbsOut"),
         }, "hobbs_out")
 
-        for key, time_type in FLIGHT_TIME_MAP.items():
+        for key, time_kind in FLIGHT_TIME_MAP.items():
             self.env['flight.time']._sync_flight_data(flight_data, {
                 'flight_id': flight.id,
                 'partner_id': pilot.id,
-                'time_type_id': self.env.ref(time_type).id,
+                'time_kind_id': self.env.ref(time_kind).id,
                 'minutes': meta.get(key, 0),
             }, key)
 
