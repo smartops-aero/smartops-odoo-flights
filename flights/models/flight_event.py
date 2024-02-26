@@ -33,7 +33,7 @@ class FlightEventTime(models.Model):
     _description = 'Flight Event Time'
 
     flight_id = fields.Many2one('flight.flight')
-    event_type = fields.Many2one('flight.event.type')
+    event_id = fields.Many2one('flight.event')
 
     # This is fine as this has a distinct meaning in air operations
     st = fields.Datetime()  # scheduled time
@@ -43,9 +43,9 @@ class FlightEventTime(models.Model):
     at = fields.Datetime()  # actual time
 
 
-class FlightEventType(models.Model):
-    _name = 'flight.event.type'
-    _description = 'Flight Event Type'
+class FlightEvent(models.Model):
+    _name = 'flight.event'
+    _description = 'Flight Event'
     _inherit = 'flight.base'
 
     code = fields.Char()
