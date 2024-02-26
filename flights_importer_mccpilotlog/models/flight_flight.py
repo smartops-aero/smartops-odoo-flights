@@ -1,5 +1,6 @@
 # Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
+from datetime import datetime
 import json
 from odoo import models
 
@@ -28,6 +29,62 @@ FLIGHT_TIME_MAP = {
 
 class FlightFlight(models.Model):
     _inherit = 'flight.flight'
+
+    def _parse_mccpilotlog_xls(self, flight_data):
+        data = json.loads(flight_data.raw_text)
+
+        aircraft = self.env["flight.aircraft"]._parse_mccpilotlog_xls(flight_data)
+
+        flight = self._sync_flight_data(flight_data, {
+            "date": datetime.strptime(data['pilotlog_date'], "%Y-%m-%d"),
+            "departure_id": self.env['flight.aerodrome'].search_by_code(data['af_dep']).id,
+            "arrival_id": self.env['flight.aerodrome'].search_by_code(data['af_arr']).id,
+            "aircraft_id": aircraft.id,
+        })
+
+        # TODO
+
+        # pliotlog_notes
+        # * route
+
+        # flight_event_time
+        # * time_dep
+        # * time_depsch
+        # * time_arr
+        # * time_arrsch
+        # * time_to
+        # * time_ldg
+
+        # flight_pilot_time
+        # * time_air
+        # * time_total
+        # * time_pic
+        # * time_sic
+        # * time_dual
+        # * time_picus
+        # * time_instructor
+        # * time_examiner
+        # * time_night
+        # * time_xc
+        # * time_ifr
+        # * time_hood
+        # * time_actual
+        # * time_relief
+        # * time_user1
+        # * time_user2
+        # * time_user3
+        # * time_user4
+
+        # flight_pilot_event
+        # * to_day
+        # * to_night
+        # * ldg_day
+        # * ldg_night
+        # * lift
+        # * holding
+
+        return flight
+
     # {
     #   "user_id": 125880,
     #   "table": "Flight",

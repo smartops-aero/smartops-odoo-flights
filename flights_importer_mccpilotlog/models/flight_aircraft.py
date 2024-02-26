@@ -6,6 +6,62 @@ from odoo import models
 
 class FlightAircraft(models.Model):
     _inherit = 'flight.aircraft'
+
+    def _parse_mccpilotlog_xls(self, flight_data):
+        data = json.loads(flight_data.raw_text)
+
+        registration = data["ac_reg"]
+        aircraft = self.env["flight.aircraft"].search([
+            ('registration', '=', registration)
+        ])
+        if aircraft:
+            return aircraft
+
+        make_name = data["ac_make"]
+        make = self.env["flight.aircraft.make"].search([
+            ("name", "=", make_name),
+        ])
+        if not make:
+            make = self.env["flight.aircraft.make"].create({"name": make_name})
+
+        model_name = data["ac_model"]
+        model = self.env["flight.aircraft.model"].search([
+            ("make_id", "=", make.id),
+            ("name", "=", model_name),
+        ])
+        if not model:
+            model = self.env["flight.aircraft.model"].create({
+                "name": model_name,
+            })
+
+        aircraft = self.env["flight.aircraft"]._sync_flight_data(flight_data, {
+            "registration": registration,
+            "model_id": model.id,
+        })
+
+        # TODO: Check other fields
+        # flight.aircraft
+        # * ac_model
+        # * ac_variant
+        # * ac_reg
+        # * ac_fin
+        # * ac_rating
+        # * ac_class
+
+        # flight.aircraft.model.tag
+        # * ac_sea
+        # * ac_engines
+        # * ac_engtype
+        # * ac_tailwheel
+        # * ac_complex
+        # * ac_tmg
+        # * ac_heavy
+        # * ac_highperf
+        # * ac_aerobatic
+        # * ac_seats
+        return aircraft
+
+
     # TODO: check if want to add more fields
     # {
     #   "user_id": 125880,
@@ -50,6 +106,8 @@ class FlightAircraft(models.Model):
     # },
 
     def _parse_mccpilotlog(self, flight_data):
+        # TODO: this method should be deleted or refactored to deduplicate code
+        # with _parse_mccpilotlog_xls
         data = json.loads(flight_data.raw_text)
         meta = data.get("meta", {})
 
