@@ -22,7 +22,14 @@ class FlightAerodrome(models.Model):
     ], "Type", required=True, default="aerodrome")
 
     _sql_constraints = [
-        # TODO: this doesn't work with null values
-        #("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
-        #("iata_unique", "unique(iata)", "Aerodrome with this IATA already exists!"),
+        ("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
+        ("iata_unique", "unique(iata)", "Aerodrome with this IATA already exists!"),
     ]
+
+    def search_by_code(self, code):
+        return self.search([
+            "|",
+            ("icao", "=", code),
+            ("iata", "=", code),
+        ], limit=1)
+

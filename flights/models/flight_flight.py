@@ -11,6 +11,7 @@ class FlightFlight(models.Model):
     _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
+    date = fields.Date()
 
     flight_number_id = fields.Many2one('flight.number')
     operator_id = fields.Many2one("res.partner", "Operator Company")
@@ -20,7 +21,7 @@ class FlightFlight(models.Model):
 
     departure_id = fields.Many2one('flight.aerodrome')
     arrival_id = fields.Many2one('flight.aerodrome')
-    event_ids = fields.One2many('flight.event', 'flight_id')
+    event_time_ids = fields.One2many('flight.event.time', 'flight_id')
 
     param_ids = fields.One2many('flight.flight.param', 'flight_id')
 
