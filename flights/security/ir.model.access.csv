@@ -6,7 +6,7 @@ access_flight_crew,access_flight_crew,flights.model_flight_crew,base.group_user,
 access_flight_crew_role,access_flight_crew_role,flights.model_flight_crew_role,base.group_user,1,0,0,0
 access_flight_flight,access_flight_flight,flights.model_flight_flight,base.group_user,1,0,0,0
 access_flight_event_time,access_flight_event_time,flights.model_flight_event_time,base.group_user,1,0,0,0
-access_flight_event_type,access_flight_event_type,flights.model_flight_event_type,base.group_user,1,0,0,0
+access_flight_event,access_flight_event,flights.model_flight_event,base.group_user,1,0,0,0
 access_flight_wizard,access_flight_wizard,flights.model_flight_wizard,base.group_user,1,0,0,0
 access_flight_data,access_flight_data,flights.model_flight_data,base.group_user,1,0,0,0
 admin_access_flight_aerodrome,admin_access_flight_aerodrome,flights.model_flight_aerodrome,base.group_system,1,1,1,1
@@ -16,7 +16,7 @@ admin_access_flight_crew,admin_access_flight_crew,flights.model_flight_crew,base
 admin_access_flight_crew_role,admin_access_flight_crew_role,flights.model_flight_crew_role,base.group_system,1,1,1,1
 admin_access_flight_flight,admin_access_flight_flight,flights.model_flight_flight,base.group_system,1,1,1,1
 admin_access_flight_event_time,admin_access_flight_event_time,flights.model_flight_event_time,base.group_system,1,1,1,1
-admin_access_flight_event_type,admin_access_flight_event_type,flights.model_flight_event_type,base.group_system,1,1,1,1
+admin_access_flight_event,admin_access_flight_event,flights.model_flight_event,base.group_system,1,1,1,1
 admin_access_flight_wizard,admin_access_flight_wizard,flights.model_flight_wizard,base.group_system,1,1,1,1
 admin_access_flight_data,admin_access_flight_data,flights.model_flight_data,base.group_system,1,1,1,1
 access_flight_aircraft_make,access_flight_aircraft_make,flights.model_flight_aircraft_make,base.group_user,1,0,0,0
