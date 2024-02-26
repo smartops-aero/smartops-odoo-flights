@@ -3,6 +3,9 @@
 import base64
 import logging
 import json
+import xlrd
+from io import BytesIO
+
 
 from odoo import fields, models
 
@@ -16,12 +19,15 @@ class MagicWizard(models.TransientModel):
     _inherit = 'flight.wizard'
 
     action = fields.Selection(selection_add=[
-        ("mccpilotlog", "mccPILOTLOG")
+        ("mccpilotlog", "mccPILOTLOG (json)"),
+        ("mccpilotlog_xls", "mccPILOTLOG (xls)"),
     ], default="mccpilotlog")
 
     def do_action(self):
         if self.action == "mccpilotlog":
             return self.do_mccpilotlog()
+        elif self.action == "mccpilotlog_xls":
+            return self.do_mccpilotlog_xls()
         else:
             return super().do_action()
 
@@ -40,6 +46,18 @@ class MagicWizard(models.TransientModel):
             return existing
         else:
             return self.env['flight.data'].create(vals)
+
+    def do_mccpilotlog_xls(self):
+        workbook = xlrd.open_workbook(file_contents=base64.decodebytes(self.payload))
+        sheet = workbook.sheet_by_index(0)
+        column_names = [sheet.cell_value(0, col_index) for col_index in range(sheet.ncols)]
+        for row_index in range(1, sheet.nrows):
+            # Create a dictionary for the current row
+            row_dict = {}
+            for col_index, col_name in enumerate(column_names):
+                # Populate the dictionary with column name: cell value pairs
+                row_dict[col_name] = sheet.cell_value(row_index, col_index)
+            import wdb; wdb.set_trace()
 
     def do_mccpilotlog(self):
         TABLE_MAP = {
