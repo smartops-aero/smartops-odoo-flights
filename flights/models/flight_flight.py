@@ -20,7 +20,7 @@ class FlightFlight(models.Model):
 
     departure_id = fields.Many2one('flight.aerodrome')
     arrival_id = fields.Many2one('flight.aerodrome')
-    event_ids = fields.One2many('flight.event', 'flight_id')
+    event_time_ids = fields.One2many('flight.event.time', 'flight_id')
 
     param_ids = fields.One2many('flight.flight.param', 'flight_id')
 

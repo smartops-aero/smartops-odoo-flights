@@ -1,5 +1,6 @@
 # Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
+# TODO: move the models to individual files
 from odoo import fields, models, api
 
 
@@ -26,10 +27,10 @@ class FlightPrefix(models.Model):
     description = fields.Char()
 
 
-class FlightEvent(models.Model):
-    _name = 'flight.event'
+class FlightEventTime(models.Model):
+    _name = 'flight.event.time'
     _inherit = 'flight.base'
-    _description = 'Flight Event'
+    _description = 'Flight Event Time'
 
     flight_id = fields.Many2one('flight.flight')
     event_type = fields.Many2one('flight.event.type')

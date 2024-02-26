@@ -3,11 +3,8 @@
 
 from odoo import fields, models, api
 
-# TODO: move the models to individual files
-
-
-class FlightEvent(models.Model):
-    _inherit = 'flight.event'
+class FlightEventTime(models.Model):
+    _inherit = 'flight.event.time'
 
     # Computed fields to calculate delays
     scheduled_delay = fields.Float(compute='_compute_scheduled_delay', store=True)
