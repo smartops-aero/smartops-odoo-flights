@@ -6,5 +6,10 @@ from odoo import fields, models
 
 class FlightPilotNote(models.Model):
     flight_id = fields.Many2many('flight.flight')
-   # note = text()
+    kind = fields.Selection([
+        ("remarks", "Remarks"),
+        ("route", "Routing"),
+    ], "Kind", required=True, default="remarks")
+
+# note = text()
    # signature = Image / OCA sign module

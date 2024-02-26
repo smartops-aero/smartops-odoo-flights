@@ -11,6 +11,7 @@ class FlightFlight(models.Model):
     _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
+    date = fields.Date()
 
     flight_number_id = fields.Many2one('flight.number')
     operator_id = fields.Many2one("res.partner", "Operator Company")
