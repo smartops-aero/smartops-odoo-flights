@@ -5,6 +5,19 @@ Base module
 
 # Installation
 
+## Aerodromes
+
+
+1. Install [base_import_async](https://github.com/OCA/queue/tree/16.0/base_import_async) (optional)
+
+2. Import csv files from `doc/aerodrome/` in the following order:
+
+    * `res.partner.csv`
+    * `flight.aerodrome.csv`
+
+
+## OCA/geospatial
+
 The module uses OCA/geospatial module, which require extra packages to be installed:
 
 ```

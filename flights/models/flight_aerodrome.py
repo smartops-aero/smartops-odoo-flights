@@ -9,7 +9,7 @@ class FlightAerodrome(models.Model):
     _inherit = 'flight.base'
     _description = 'Aerodrome'
 
-    partner_id = fields.Char("Address")
+    partner_id = fields.Many2one("res.partner", string="Address")
 
     icao = fields.Char("ICAO identifier", index=True)
     iata = fields.Char("IATA identifier", index=True)
@@ -26,7 +26,6 @@ class FlightAerodrome(models.Model):
 
     _sql_constraints = [
         ("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
-        ("iata_unique", "unique(iata) WHERE iata IS NOT NULL", "Aerodrome with this IATA already exists!"),
     ]
 
     def search_by_code(self, code):
