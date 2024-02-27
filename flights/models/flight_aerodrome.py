@@ -39,4 +39,4 @@ class FlightAerodrome(models.Model):
     @api.depends('icao', 'iata')
     def _compute_display_name(self):
         for record in self:
-            record.display_name = f'{record.icao} ({record.iata})'
+            record.display_name = f'{record.icao}' + (f' ({record.iata})' if record.iata else '')
