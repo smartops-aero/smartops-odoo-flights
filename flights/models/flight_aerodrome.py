@@ -11,8 +11,8 @@ class FlightAerodrome(models.Model):
 
     partner_id = fields.Char("Address")
 
-    icao = fields.Char("ICAO identifier")
-    iata = fields.Char("IATA identifier")
+    icao = fields.Char("ICAO identifier", index=True)
+    iata = fields.Char("IATA identifier", index=True)
     elevation = fields.Integer("Aerodrome elevation in feet")
     aerodrome_type = fields.Selection([
         ("small_airport", "Small Airport"),
