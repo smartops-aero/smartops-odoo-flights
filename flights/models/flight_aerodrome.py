@@ -15,15 +15,18 @@ class FlightAerodrome(models.Model):
     iata = fields.Char("IATA identifier")
     elevation = fields.Integer("Aerodrome elevation in feet")
     aerodrome_type = fields.Selection([
-        ("airport", "Airport"),
-        ("aerodrome", "Aerodrome"),
-        ("seabase", "Seabase"),
+        ("small_airport", "Small Airport"),
+        ("medium_airport", "Medium Airport"),
+        ("large_airport", "Large Airport"),
         ("heliport", "Heliport"),
-    ], "Type", required=True, default="aerodrome")
+        ("seaplane_base", "Seabase"),
+        ("balloonport", "Balloonport"),
+        ("closed", "Closed"),
+    ], "Type", required=True, default="small_airport")
 
     _sql_constraints = [
         ("icao_unique", "unique(icao)", "Aerodrome with this ICAO already exists!"),
-        ("iata_unique", "unique(iata)", "Aerodrome with this IATA already exists!"),
+        ("iata_unique", "unique(iata) WHERE iata IS NOT NULL", "Aerodrome with this IATA already exists!"),
     ]
 
     def search_by_code(self, code):

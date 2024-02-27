@@ -34,6 +34,7 @@
         'views/templates.xml',
         'data/flight_flight_param_type_data.xml',
         'data/flight_crew_role_data.xml',
+        'data/flight_aerodrome_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
