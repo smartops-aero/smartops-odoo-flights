@@ -1,0 +1,77 @@
+<odoo>
+    <!--
+        Copyright 2024 Apexive <https://apexive.com/>
+        License MIT (https://opensource.org/licenses/MIT).
+    -->
+
+    <!-- Define search view for flight.aerodrome -->
+    <record id="view_flight_aerodrome_search" model="ir.ui.view">
+        <field name="name">flight.aerodrome.search</field>
+        <field name="model">flight.aerodrome</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Default search filter by ICAO or IATA -->
+                <field name="icao" string="Aerodrome code" filter_domain="['|', ('icao', '=', self), ('iata', '=', self)]"/>
+
+                <!-- Group by partner_id.country_id -->
+                <group expand="1" string="Country">
+                    <filter name="country_id" string="Country" context="{'group_by': 'country_id'}"/>
+                </group>
+
+                <!-- Predefined filter for aerodrome types -->
+                <filter name="small_airport" string="Small Airports" domain="[('aerodrome_type', '=', 'small_airport')]"/>
+                <filter name="medium_airport" string="Medium Airports" domain="[('aerodrome_type', '=', 'medium_airport')]"/>
+                <filter name="large_airport" string="Large Airports" domain="[('aerodrome_type', '=', 'large_airport')]"/>
+                <filter name="heliport" string="Heliports" domain="[('aerodrome_type', '=', 'heliport')]"/>
+                <filter name="seaplane_base" string="Seaplane Bases" domain="[('aerodrome_type', '=', 'seaplane_base')]"/>
+                <filter name="balloonport" string="Balloonports" domain="[('aerodrome_type', '=', 'balloonport')]"/>
+                <filter name="closed" string="Closed Aerodromes" domain="[('aerodrome_type', '=', 'closed')]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Define action for flight.aerodrome -->
+    <record id="action_flight_aerodrome" model="ir.actions.act_window">
+        <field name="name">Aerodromes</field>
+        <field name="res_model">flight.aerodrome</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_flight_aerodrome_search"/>
+    </record>
+
+    <!-- Define tree view for flight.aerodrome -->
+    <record id="view_flight_aerodrome_tree" model="ir.ui.view">
+        <field name="name">flight.aerodrome.tree</field>
+        <field name="model">flight.aerodrome</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="aerodrome_type"/>
+                <field name="icao"/>
+                <field name="iata"/>
+                <field name="elevation"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Define form view for flight.aerodrome -->
+    <record id="view_flight_aerodrome_form" model="ir.ui.view">
+        <field name="name">flight.aerodrome.form</field>
+        <field name="model">flight.aerodrome</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- Define form fields -->
+                <group>
+                    <field name="partner_id"/>
+                    <field name="aerodrome_type"/>
+                    <field name="icao"/>
+                    <field name="iata"/>
+                    <field name="elevation"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_flight_aerodrome" name="Aerodromes" parent="menu_flights_folder" action="action_flight_aerodrome" sequence="20"/>
+
+</odoo>

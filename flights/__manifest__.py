@@ -31,6 +31,7 @@
         'security/ir.model.access.csv',
         'wizard/flight_wizard_views.xml',
         'views/views.xml',
+        'views/flight_aerodrome_views.xml',
         'views/templates.xml',
         'data/flight_flight_param_type_data.xml',
         'data/flight_crew_role_data.xml',
