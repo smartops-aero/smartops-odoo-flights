@@ -10,7 +10,7 @@ class FlightFlight(models.Model):
     flight_time = fields.Integer("Flight Time", compute='_compute_flight_time')
     total_time = fields.Integer("Total Flight Time", compute='_compute_flight_time')
 
-    @api.depends('pilot_time_ids')
+    @api.depends('pilottime_ids')
     def _compute_flight_time(self):
         for flight in self:
             # TODO: check computation

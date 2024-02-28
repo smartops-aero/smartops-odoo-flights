@@ -5,6 +5,7 @@ from odoo import fields, models
 
 class FlightPilotEvent(models.Model):
     _name = "flight.pilot.event"
+    _description = 'Flight Pilot Event'
 
     flight_id = fields.Many2many('flight.flight')
     kind_id = fields.Many2one('flight.pilot.event.kind')
