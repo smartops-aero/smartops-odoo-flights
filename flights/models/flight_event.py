@@ -59,6 +59,7 @@ class FlightEvent(models.Model):
     _name = 'flight.event'
     _description = 'Flight Event'
     _inherit = 'flight.base'
+    _rec_name = 'code'
 
     code = fields.Char()
     description = fields.Char()

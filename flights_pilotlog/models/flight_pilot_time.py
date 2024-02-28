@@ -30,7 +30,7 @@ class FlightPilotTime(models.Model):
 
     """
 
-    _name = 'flight.time'
+    _name = 'flight.pilot.time'
     _inherit = 'flight.base'
     _description = 'Pilot Flight Time'
 
@@ -40,9 +40,9 @@ class FlightPilotTime(models.Model):
     minutes = fields.Integer("Number of minutes")
 
 
-class FlightTimeKind(models.Model):
-    _name = 'flight.time.kind'
-    _description = 'Flight Statistics Type'
+class FlightPilotTimeKind(models.Model):
+    _name = 'flight.pilot.time.kind'
+    _description = 'Flight Pilot Time Type'
 
     name = fields.Char("Code")
     description = fields.Char("Description")
