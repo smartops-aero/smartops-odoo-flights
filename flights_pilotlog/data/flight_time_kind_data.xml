@@ -9,7 +9,7 @@
         <field name="description">Instrument Flight Rules</field>
     </record>
     <record id="flight_time_kind_imt" model="flight.time.kind">
-        <field name="name">IMT</field>
+        <field name="name">HOOD</field>
         <field name="description">Simulated Instrument Conditions</field>
     </record>
     <record id="flight_time_kind_night" model="flight.time.kind">
@@ -23,31 +23,15 @@
 
     <!-- Function Time -->
     <record id="flight_time_kind_instr" model="flight.time.kind">
-        <field name="name">INSTR</field>
+        <field name="name">INSTRUCTOR</field>
         <field name="description">Flight Instructor</field>
     </record>
-    <record id="flight_time_kind_u1" model="flight.time.kind">
-        <field name="name">U1</field>
-        <field name="description">Basic Training</field>
-    </record>
-    <record id="flight_time_kind_u2" model="flight.time.kind">
-        <field name="name">U2</field>
-        <field name="description">Advanced Training</field>
-    </record>
-    <record id="flight_time_kind_u3" model="flight.time.kind">
-        <field name="name">U3</field>
-        <field name="description">Specialized Training</field>
-    </record>
-    <record id="flight_time_kind_u4" model="flight.time.kind">
-        <field name="name">U4</field>
-        <field name="description">Instructor Training</field>
-    </record>
     <record id="flight_time_kind_air" model="flight.time.kind">
-        <field name="name">AIR</field>
+        <field name="name">AIRBORNE</field>
         <field name="description">Aircraft Time</field>
     </record>
     <record id="flight_time_kind_cop" model="flight.time.kind">
-        <field name="name">COP</field>
+        <field name="name">SIC</field>
         <field name="description">Co-Pilot</field>
     </record>
     <record id="flight_time_kind_pic" model="flight.time.kind">
@@ -55,11 +39,11 @@
         <field name="description">Pilot in Command</field>
     </record>
     <record id="flight_time_kind_rel" model="flight.time.kind">
-        <field name="name">REL</field>
+        <field name="name">RELIEF</field>
         <field name="description">Relief Pilot</field>
     </record>
     <record id="flight_time_kind_sfr" model="flight.time.kind">
-        <field name="name">SFR</field>
+        <field name="name">SAFETY</field>
         <field name="description">Safety Pilot</field>
     </record>
     <record id="flight_time_kind_dual" model="flight.time.kind">
@@ -67,7 +51,7 @@
         <field name="description">Dual Instruction</field>
     </record>
     <record id="flight_time_kind_exam" model="flight.time.kind">
-        <field name="name">EXAM</field>
+        <field name="name">EXAMINER</field>
         <field name="description">Examination</field>
     </record>
     <record id="flight_time_kind_picus" model="flight.time.kind">
