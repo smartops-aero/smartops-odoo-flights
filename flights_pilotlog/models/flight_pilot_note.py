@@ -9,7 +9,7 @@ class FlightPilotNote(models.Model):
     kind = fields.Selection([
         ("remarks", "Remarks"),
         ("route", "Routing"),
+        ("endorsement", "Endorsement"),
     ], "Kind", required=True, default="remarks")
-
-# note = text()
+    text = fields.Text()
    # signature = Image / OCA sign module
