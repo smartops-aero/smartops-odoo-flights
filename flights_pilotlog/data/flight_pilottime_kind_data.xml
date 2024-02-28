@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
 
-    <record id="flight_pilot_time_kind_air" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_air" model="flight.pilottime.kind">
         <field name="name">AIRBONE</field>
         <field name="description">Time spent flying in the air.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_total" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_total" model="flight.pilottime.kind">
         <field name="name">TOTAL</field>
         <field name="description">Total flight time, including all types of flying.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_pic" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_pic" model="flight.pilottime.kind">
         <field name="name">PIC</field>
         <field name="description">Pilot in Command (PIC) time, representing time when the pilot is responsible for the operation and safety of the aircraft.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_sic" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_sic" model="flight.pilottime.kind">
         <field name="name">SIC</field>
         <field name="description">Second in Command (SIC) time, representing time when a qualified pilot is acting as a co-pilot under the command of the PIC.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_dual" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_dual" model="flight.pilottime.kind">
         <field name="name">DUAL</field>
         <field name="description">Dual instruction time, representing time spent receiving instruction from a certified flight instructor.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_picus" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_picus" model="flight.pilottime.kind">
         <field name="name">PICUS</field>
         <field name="description">Pilot in Command Under Supervision (PICUS) time, representing time when a pilot operates an aircraft under the supervision of a qualified PIC.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_instructor" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_instructor" model="flight.pilottime.kind">
         <field name="name">INSTRUCTOR</field>
         <field name="description">Instructor time, representing time spent instructing other pilots.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_examiner" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_examiner" model="flight.pilottime.kind">
         <field name="name">EXAMINER</field>
         <field name="description">Examiner time, representing time spent conducting flight tests and evaluations.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_night" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_night" model="flight.pilottime.kind">
         <field name="name">NIGHT</field>
         <field name="description">Night flying time, representing time spent flying during nighttime hours.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_xc" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_xc" model="flight.pilottime.kind">
         <field name="name">XC</field>
         <field name="description">Cross-country flying time, representing time spent flying between different locations.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_ifr" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_ifr" model="flight.pilottime.kind">
         <field name="name">IFR</field>
         <field name="description">Instrument flight rules (IFR) time, representing time spent flying under conditions where the pilot relies solely on instruments for navigation.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_hood" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_hood" model="flight.pilottime.kind">
         <field name="name">HOOD</field>
         <field name="description">Time spent flying with a vision-restricting device (often called a "hood") to simulate instrument flying conditions.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_actual" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_actual" model="flight.pilottime.kind">
         <field name="name">IMC</field>
         <field name="description">Actual instrument flying time, representing time spent flying under actual instrument meteorological conditions (IMC).</field>
     </record>
 
-    <record id="flight_pilot_time_kind_relief" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_relief" model="flight.pilottime.kind">
         <field name="name">RELIEF</field>
         <field name="description">Time spent as relief pilot, representing time spent relieving the primary pilot during long flights or for rest breaks.</field>
     </record>
 
-    <record id="flight_pilot_time_kind_safety" model="flight.pilot.time.kind">
+    <record id="flight_pilottime_kind_safety" model="flight.pilottime.kind">
         <field name="name">SAFETY</field>
         <field name="description">Time spent as a safety pilot represents the duration during which an experienced aviator assists another pilot, often during training or in challenging flight conditions, to ensure enhanced oversight and bolster overall flight safety.</field>
     </record>

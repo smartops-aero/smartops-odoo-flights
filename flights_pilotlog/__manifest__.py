@@ -29,7 +29,7 @@
         'views/templates.xml',
         'data/flight_time_kind_data.xml',
         'data/flight_pilot_event_kind_data.xml',
-        'data/flight_pilot_time_kind_data.xml',
+        'data/flight_pilottime_kind_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

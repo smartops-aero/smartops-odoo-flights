@@ -30,19 +30,19 @@ class FlightPilotTime(models.Model):
 
     """
 
-    _name = 'flight.pilot.time'
+    _name = 'flight.pilottime'
     _inherit = 'flight.base'
-    _description = 'Pilot Flight Time'
+    _description = 'Pilot Flight Time Statistics'
 
     flight_id = fields.Many2one('flight.flight', 'Flight')
     partner_id = fields.Many2one('res.partner', 'Pilot')
-    time_kind_id = fields.Many2one('flight.pilot.time.kind')
+    time_kind_id = fields.Many2one('flight.pilottime.kind')
     minutes = fields.Integer("Number of minutes")
 
 
 class FlightPilotTimeKind(models.Model):
-    _name = 'flight.pilot.time.kind'
-    _description = 'Flight Pilot Time Type'
+    _name = 'flight.pilottime.kind'
+    _description = 'Flight Pilot Time Statistics Type'
 
     name = fields.Char("Code")
     description = fields.Char("Description")
