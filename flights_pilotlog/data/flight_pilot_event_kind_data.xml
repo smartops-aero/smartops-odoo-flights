@@ -3,53 +3,24 @@
 
     <!-- Landing Types -->
     <record id="flight_pilot_event_kind_ld" model="flight.pilot.event.kind">
-        <field name="code">LD</field>
+        <field name="code">LDDAY</field>
         <field name="description">Landing</field>
     </record>
     <record id="flight_pilot_event_kind_ln" model="flight.pilot.event.kind">
-        <field name="code">LN</field>
+        <field name="code">LDNIGHT</field>
         <field name="description">Landing Night</field>
-    </record>
-    <record id="flight_pilot_event_kind_ldt" model="flight.pilot.event.kind">
-        <field name="code">LDT</field>
-        <field name="description">Touch-and-go Landing</field>
-    </record>
-    <record id="flight_pilot_event_kind_lpr" model="flight.pilot.event.kind">
-        <field name="code">LPR</field>
-        <field name="description">Precision Approach Landing</field>
-    </record>
-    <record id="flight_pilot_event_kind_lnr" model="flight.pilot.event.kind">
-        <field name="code">LNR</field>
-        <field name="description">Non-precision Approach Landing</field>
     </record>
 
     <!-- Takeoff Types -->
     <record id="flight_pilot_event_kind_to" model="flight.pilot.event.kind">
-        <field name="code">TO</field>
+        <field name="code">TODAY</field>
         <field name="description">Takeoff</field>
     </record>
     <record id="flight_pilot_event_kind_ton" model="flight.pilot.event.kind">
-        <field name="code">TON</field>
+        <field name="code">TONIGHT</field>
         <field name="description">Takeoff Night</field>
     </record>
-    <record id="flight_pilot_event_kind_tgo" model="flight.pilot.event.kind">
-        <field name="code">TGO</field>
-        <field name="description">Touch-and-go Takeoff</field>
-    </record>
-    <record id="flight_pilot_event_kind_tsl" model="flight.pilot.event.kind">
-        <field name="code">TSL</field>
-        <field name="description">Short-field Takeoff</field>
-    </record>
-    <record id="flight_pilot_event_kind_tpl" model="flight.pilot.event.kind">
-        <field name="code">TPL</field>
-        <field name="description">Performance Takeoff</field>
-    </record>
 
-    <!-- Flight Operations -->
-    <record id="flight_pilot_event_kind_cct" model="flight.pilot.event.kind">
-        <field name="code">CCT</field>
-        <field name="description">Circuit</field>
-    </record>
     <record id="flight_pilot_event_kind_hld" model="flight.pilot.event.kind">
         <field name="code">HLD</field>
         <field name="description">Holding</field>
@@ -57,10 +28,6 @@
     <record id="flight_pilot_event_kind_app" model="flight.pilot.event.kind">
         <field name="code">APP</field>
         <field name="description">Approach</field>
-    </record>
-    <record id="flight_pilot_event_kind_dep" model="flight.pilot.event.kind">
-        <field name="code">DEP</field>
-        <field name="description">Departure</field>
     </record>
 
 </odoo>
