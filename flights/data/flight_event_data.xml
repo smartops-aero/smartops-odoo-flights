@@ -2,23 +2,23 @@
 <odoo noupdate="1">
 
     <record id="flight_event_departure" model="flight.event">
-        <field name="code">DEP</field>
-        <field name="description">The moment when an aircraft leaves the departure point to commence its journey.</field>
+        <field name="code">OB</field>
+        <field name="description">Off-blocks (the moment when an aircraft starts moving for the purpose of flight)</field>
     </record>
 
     <record id="flight_event_takeoff" model="flight.event">
-        <field name="code">TOF</field>
-        <field name="description">The moment when an aircraft becomes airborne after accelerating along the runway.</field>
+        <field name="code">TO</field>
+        <field name="description">Take-off (the moment when an aircraft becomes airborne after accelerating along the runway)</field>
     </record>
 
     <record id="flight_event_arrival" model="flight.event">
-        <field name="code">ARR</field>
-        <field name="description">The moment when an aircraft reaches its final destination and lands.</field>
+        <field name="code">IB</field>
+        <field name="description">In-blocks (the moment arrives to stand and shuts down the engines).</field>
     </record>
 
     <record id="flight_event_landing" model="flight.event">
-        <field name="code">LDG</field>
-        <field name="description">The moment when an aircraft touches down on the runway after completing its flight.</field>
+        <field name="code">LD</field>
+        <field name="description">Landing (The moment when an aircraft touches down on the runway after completing its flight)</field>
     </record>
 
 </odoo>

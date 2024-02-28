@@ -4,26 +4,32 @@
         License MIT (https://opensource.org/licenses/MIT).
     -->
     <record id="flight_param_type_hobbs_in" model="flight.flight.param.type">
+        <field name="code">hobbs_in</field>
         <field name="name">Hobbs In</field>
     </record>
 
     <record id="flight_param_type_hobbs_out" model="flight.flight.param.type">
+        <field name="comde">hobbs_out</field>
         <field name="name">Hobbs Out</field>
     </record>
 
     <record id="flight_param_type_oil_before" model="flight.flight.param.type">
-        <field name="name">Oil Before</field>
+        <field name="code">oil_qty_out</field>
+        <field name="name">Oil Qty Before Departure</field>
     </record>
 
     <record id="flight_param_type_oil_after" model="flight.flight.param.type">
-        <field name="name">Oil After</field>
+        <field name="code">oil_qty_in</field>
+        <field name="name">Oil Qty After</field>
     </record>
 
     <record id="flight_param_type_fuel_before" model="flight.flight.param.type">
+        <field name="code">fuel_blocks</field>
         <field name="name">Fuel Before</field>
     </record>
 
     <record id="flight_param_type_fuel_after" model="flight.flight.param.type">
+        <field name="code">fuel_shutdown</field>
         <field name="name">Fuel After</field>
     </record>
 </odoo>
