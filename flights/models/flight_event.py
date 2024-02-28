@@ -15,7 +15,7 @@ class FlightNumber(models.Model):
     @api.depends("prefix_id.name", "numbers")
     def _compute_display_name(self):
         for r in self:
-            r.display_name = f"{r.operator_id.name} {r.numbers}"
+            r.display_name = f"{r.prefix_id.name} {r.numbers}"
 
 
 class FlightPrefix(models.Model):

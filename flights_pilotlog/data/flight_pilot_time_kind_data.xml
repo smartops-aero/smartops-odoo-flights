@@ -2,12 +2,12 @@
 <odoo noupdate="1">
 
     <record id="flight_pilot_time_kind_air" model="flight.pilot.time.kind">
-        <field name="name">AIR</field>
+        <field name="name">AIRBONE</field>
         <field name="description">Time spent flying in the air.</field>
     </record>
 
     <record id="flight_pilot_time_kind_total" model="flight.pilot.time.kind">
-        <field name="name">TOT</field>
+        <field name="name">TOTAL</field>
         <field name="description">Total flight time, including all types of flying.</field>
     </record>
 
@@ -22,7 +22,7 @@
     </record>
 
     <record id="flight_pilot_time_kind_dual" model="flight.pilot.time.kind">
-        <field name="name">DUL</field>
+        <field name="name">DUAL</field>
         <field name="description">Dual instruction time, representing time spent receiving instruction from a certified flight instructor.</field>
     </record>
 
@@ -32,17 +32,17 @@
     </record>
 
     <record id="flight_pilot_time_kind_instructor" model="flight.pilot.time.kind">
-        <field name="name">INS</field>
+        <field name="name">INSTRUCTOR</field>
         <field name="description">Instructor time, representing time spent instructing other pilots.</field>
     </record>
 
     <record id="flight_pilot_time_kind_examiner" model="flight.pilot.time.kind">
-        <field name="name">EXM</field>
+        <field name="name">EXAMINER</field>
         <field name="description">Examiner time, representing time spent conducting flight tests and evaluations.</field>
     </record>
 
     <record id="flight_pilot_time_kind_night" model="flight.pilot.time.kind">
-        <field name="name">NIT</field>
+        <field name="name">NIGHT</field>
         <field name="description">Night flying time, representing time spent flying during nighttime hours.</field>
     </record>
 
@@ -57,7 +57,7 @@
     </record>
 
     <record id="flight_pilot_time_kind_hood" model="flight.pilot.time.kind">
-        <field name="name">HOD</field>
+        <field name="name">HOOD</field>
         <field name="description">Time spent flying with a vision-restricting device (often called a "hood") to simulate instrument flying conditions.</field>
     </record>
 
@@ -67,8 +67,13 @@
     </record>
 
     <record id="flight_pilot_time_kind_relief" model="flight.pilot.time.kind">
-        <field name="name">REL</field>
+        <field name="name">RELIEF</field>
         <field name="description">Time spent as relief pilot, representing time spent relieving the primary pilot during long flights or for rest breaks.</field>
+    </record>
+
+    <record id="flight_pilot_time_kind_safety" model="flight.pilot.time.kind">
+        <field name="name">SAFETY</field>
+        <field name="description">Time spent as a safety pilot represents the duration during which an experienced aviator assists another pilot, often during training or in challenging flight conditions, to ensure enhanced oversight and bolster overall flight safety.</field>
     </record>
 
 </odoo>
