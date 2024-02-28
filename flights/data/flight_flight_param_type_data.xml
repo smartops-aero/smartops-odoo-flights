@@ -24,12 +24,12 @@
     </record>
 
     <record id="flight_param_type_fuel_before" model="flight.flight.param.type">
-        <field name="code">fuel_blocks</field>
+        <field name="code">fuel_ob</field>
         <field name="name">Fuel Before</field>
     </record>
 
     <record id="flight_param_type_fuel_after" model="flight.flight.param.type">
-        <field name="code">fuel_shutdown</field>
+        <field name="code">fuel_arrival</field>
         <field name="name">Fuel After</field>
     </record>
 </odoo>
