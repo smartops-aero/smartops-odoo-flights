@@ -2,7 +2,7 @@
 <odoo noupdate="1">
 
     <record id="flight_pilot_time_kind_air" model="flight.pilot.time.kind">
-        <field name="name">AIR</field>
+        <field name="name">AIRBONE</field>
         <field name="description">Time spent flying in the air.</field>
     </record>
 
@@ -69,6 +69,11 @@
     <record id="flight_pilot_time_kind_relief" model="flight.pilot.time.kind">
         <field name="name">RELIEF</field>
         <field name="description">Time spent as relief pilot, representing time spent relieving the primary pilot during long flights or for rest breaks.</field>
+    </record>
+
+    <record id="flight_pilot_time_kind_safety" model="flight.pilot.time.kind">
+        <field name="name">SAFETY</field>
+        <field name="description">Time spent as a safety pilot represents the duration during which an experienced aviator assists another pilot, often during training or in challenging flight conditions, to ensure enhanced oversight and bolster overall flight safety.</field>
     </record>
 
 </odoo>
