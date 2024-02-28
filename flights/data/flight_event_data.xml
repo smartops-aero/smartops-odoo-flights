@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="flight_event_departure" model="flight.event">
+        <field name="code">DEP</field>
+        <field name="description">The moment when an aircraft leaves the departure point to commence its journey.</field>
+    </record>
+
+    <record id="flight_event_takeoff" model="flight.event">
+        <field name="code">TOF</field>
+        <field name="description">The moment when an aircraft becomes airborne after accelerating along the runway.</field>
+    </record>
+
+    <record id="flight_event_arrival" model="flight.event">
+        <field name="code">ARR</field>
+        <field name="description">The moment when an aircraft reaches its final destination and lands.</field>
+    </record>
+
+    <record id="flight_event_landing" model="flight.event">
+        <field name="code">LDG</field>
+        <field name="description">The moment when an aircraft touches down on the runway after completing its flight.</field>
+    </record>
+
+</odoo>
