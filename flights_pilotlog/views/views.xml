@@ -13,7 +13,7 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Statistics">
-                    <field name="pilot_time_ids">
+                    <field name="pilottime_ids">
                         <tree>
                             <field name="partner_id"/>
                             <field name="time_kind_id"/>

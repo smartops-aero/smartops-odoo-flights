@@ -42,10 +42,9 @@ class FlightFlight(models.Model):
             "aircraft_id": aircraft.id,
         })
 
-        # TODO
-
-        # pliotlog_notes
-        # * route
+        self.env["flight.event.time"]._process_mccpilotlog_xls(flight, data)
+        self.env["flight.pilottime"]._process_mccpilotlog_xls(flight, data)
+        self.env["flight.pilot.event"]._process_mccpilotlog_xls(flight, data)
 
         # flight_event_time
         # * time_dep
@@ -55,7 +54,7 @@ class FlightFlight(models.Model):
         # * time_to
         # * time_ldg
 
-        # flight_pilot_time
+        # flight_pilottime
         # * time_air
         # * time_total
         # * time_pic
@@ -82,6 +81,11 @@ class FlightFlight(models.Model):
         # * ldg_night
         # * lift
         # * holding
+
+        # TODO
+
+        # pliotlog_notes
+        # * route
 
         return flight
 

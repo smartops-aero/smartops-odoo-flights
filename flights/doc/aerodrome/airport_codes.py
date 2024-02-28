@@ -26,7 +26,7 @@ with open(csv_file, newline='') as input_csvfile:
         aerodrome_writer = csv.writer(aerodrome_csvfile, quoting=csv.QUOTE_ALL)
 
         # Write headers to both files
-        partner_writer.writerow(['id', 'name', 'city', 'country_id/id'])
+        partner_writer.writerow(['id', 'name', 'city', 'country_id/id', "partner_latitude", "partner_longitude"])
         aerodrome_writer.writerow(['id', 'partner_id/id', 'icao', 'iata', 'elevation', 'aerodrome_type'])
 
         # Skip the header line in the input CSV file
@@ -36,13 +36,18 @@ with open(csv_file, newline='') as input_csvfile:
         for row in reader:
             ident, type, name, elevation_ft, continent, iso_country, iso_region, municipality, gps_code, iata_code, local_code, coordinates = row
 
+            partner_latitude, partner_longitude = None, None
+            if coordinates:
+                partner_latitude, partner_longitude = coordinates.split(", ")
+
             # Fix country code
             iso_country = iso_country.lower()
             if iso_country == "gb":
                 iso_country = "uk"
 
+            # TODO: compute tz (from coordinates or country + municipality)
             # Write data to res.partner.csv
-            partner_writer.writerow(['partner_' + ident, name, municipality, 'base.' + iso_country])
+            partner_writer.writerow(['partner_' + ident, name, municipality, 'base.' + iso_country, partner_latitude, partner_longitude])
 
             # Write data to flights.aerodrome.csv
             aerodrome_writer.writerow(['aerodrome_' + ident, 'partner_' + ident, ident, iata_code, elevation_ft, type])

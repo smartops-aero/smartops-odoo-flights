@@ -28,7 +28,7 @@ class FlightAircraftModel(models.Model):
 
     name = fields.Char()
     make_id = fields.Many2one("flight.aircraft.make")
-    code = fields.Char("ICAO type code")  # TODO: can we just use name field for that ?
+    code = fields.Char("ICAO type code")
     tag_ids = fields.Many2many("flight.aircraft.model.tag")
 
     #  if   "Kg5700": is true - record 142000 lbs by defaukt as mtow (medium), otherwise record 12000 lbs by default (light)
