@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
 
-    <record id="flight_event_departure" model="flight.event">
+    <record id="flight_event_kind_departure" model="flight.event.kind">
         <field name="code">OB</field>
         <field name="description">Off-blocks (the moment when an aircraft starts moving for the purpose of flight)</field>
     </record>
 
-    <record id="flight_event_takeoff" model="flight.event">
+    <record id="flight_event_kind_takeoff" model="flight.event.kind">
         <field name="code">TO</field>
         <field name="description">Take-off (the moment when an aircraft becomes airborne after accelerating along the runway)</field>
     </record>
 
-    <record id="flight_event_arrival" model="flight.event">
+    <record id="flight_event_kind_arrival" model="flight.event.kind">
         <field name="code">IB</field>
         <field name="description">In-blocks (the moment arrives to stand and shuts down the engines).</field>
     </record>
 
-    <record id="flight_event_landing" model="flight.event">
+    <record id="flight_event_kind_landing" model="flight.event.kind">
         <field name="code">LD</field>
         <field name="description">Landing (The moment when an aircraft touches down on the runway after completing its flight)</field>
     </record>

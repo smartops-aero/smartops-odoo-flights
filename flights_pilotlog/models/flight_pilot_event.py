@@ -14,6 +14,7 @@ class FlightPilotEvent(models.Model):
 class FlightPilotEventKind(models.Model):
     # e.g. landing_night, landing day, takefoff_night, takeoff_day, holding, approach
     _name = 'flight.pilot.event.kind'
+    _description = 'Flight Pilot Event Kind'
 
     code = fields.Char()
     description = fields.Char()

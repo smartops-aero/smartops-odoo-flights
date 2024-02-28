@@ -33,15 +33,15 @@ class FlightEventTime(models.Model):
     _description = 'Flight Event Time'
 
     flight_id = fields.Many2one('flight.flight')
-    event_id = fields.Many2one('flight.event')
+    kind_id = fields.Many2one('flight.event.kind', 'Flight Event Kind')
 
-    kind = fields.Selection([
+    time_kind = fields.Selection([
         ("S", "Scheduled"),
         ("T", "Target"),
         ("E", "Estimated"),
         ("A", "Actual"),
         ("R", "Requested"),
-    ], "Kind", required=True, default="A")
+    ], "Time Kind", required=True, default="A")
 
     time = fields.Datetime()
 
@@ -55,9 +55,9 @@ class FlightEventTime(models.Model):
         return f"{self.kind}{self.event_id.code}T {self._compute_time()}".upper()
 
 
-class FlightEvent(models.Model):
-    _name = 'flight.event'
-    _description = 'Flight Event'
+class FlightEventKind(models.Model):
+    _name = 'flight.event.kind'
+    _description = 'Flight Event Kind'
     _inherit = 'flight.base'
     _rec_name = 'code'
 
