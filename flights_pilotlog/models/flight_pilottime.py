@@ -37,7 +37,7 @@ class FlightPilotTime(models.Model):
     flight_id = fields.Many2one('flight.flight', 'Flight')
     partner_id = fields.Many2one('res.partner', 'Pilot')
     time_kind_id = fields.Many2one('flight.pilottime.kind')
-    minutes = fields.Integer("Number of minutes")
+    minutes = fields.Integer("Minutes")
 
 
 class FlightPilotTimeKind(models.Model):

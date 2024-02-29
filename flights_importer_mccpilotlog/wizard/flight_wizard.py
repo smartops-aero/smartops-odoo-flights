@@ -20,7 +20,8 @@ class MagicWizard(models.TransientModel):
     _inherit = 'flight.wizard'
 
     action = fields.Selection(selection_add=[
-        ("mccpilotlog", "mccPILOTLOG (json)"),
+        # TODO: json file doesn't have all necessary data and related code must be deleted
+        #("mccpilotlog", "mccPILOTLOG (json)"),
         ("mccpilotlog_xls", "mccPILOTLOG (xls)"),
     ], default="mccpilotlog_xls")
 
@@ -67,9 +68,12 @@ class MagicWizard(models.TransientModel):
                 'source_model': "flight.flight",
                 'source_ref': str(row_index),
                 'raw_text': json.dumps(data),
+                'partner_id': self.partner_id,
             })
             # TODO: use queue_job module or postcommit trick to do this outside
             # of current transaction
+
+            # This will call method env['flight.flight']._parse_mccpilotlog_xls
             flight_data._data_parse()
 
     def do_mccpilotlog(self):

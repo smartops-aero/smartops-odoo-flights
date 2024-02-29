@@ -4,24 +4,16 @@ from odoo import models, fields
 
 
 class FlightData(models.Model):
-    """Implements one way data syncronization, typically from a file.
-
-       TODO: check and update this doc
-       Key principles:
-       * `source_model` is main Odoo model for the current `flight.data` record.
-       * single `flight.data` may create several records in different models
-       * single `flight.data` may create only a single record in a specific model.
-         This allows linking record and original data via field flight_source_id = Many2one("flight.data")
-    """
+    """Implements one way data syncronization, typically from a file"""
 
     _name = 'flight.data'
     _description = 'Flight Data Source'
 
     source_type = fields.Char(required=True)
-    # TODO: do we need this field?
     source_model = fields.Char("Model", required=True, help="Main Odoo model that processes this data")
     source_ref = fields.Char(required=True)
     raw_text = fields.Text(required=True)
+    partner_id = fields.Many2one("res.partner", "Pilot")
     is_parsed = fields.Boolean("Parsed", default=False)
 
     _sql_constraints = [
