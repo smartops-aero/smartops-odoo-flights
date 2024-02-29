@@ -21,6 +21,7 @@
         <field name="description">Takeoff Night</field>
     </record>
 
+    <!-- Flying Types -->
     <record id="flight_pilot_activity_kind_hld" model="flight.pilot.activity.kind">
         <field name="code">HLD</field>
         <field name="description">Holding</field>
@@ -28,6 +29,10 @@
     <record id="flight_pilot_activity_kind_app" model="flight.pilot.activity.kind">
         <field name="code">APP</field>
         <field name="description">Approach</field>
+    </record>
+    <record id="flight_pilot_activity_kind_lift" model="flight.pilot.activity.kind">
+        <field name="code">LIFTOFF</field>
+        <field name="description">Lift</field>
     </record>
 
 </odoo>

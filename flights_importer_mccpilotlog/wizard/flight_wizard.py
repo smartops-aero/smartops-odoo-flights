@@ -42,6 +42,7 @@ class MagicWizard(models.TransientModel):
         if existing:
             if self.override:
                 existing.write({
+                    "partner_id": self.partner_id.id,
                     "raw_text": vals["raw_text"],
                     "is_parsed": False,
                 })
@@ -68,7 +69,7 @@ class MagicWizard(models.TransientModel):
                 'source_model': "flight.flight",
                 'source_ref': str(row_index),
                 'raw_text': json.dumps(data),
-                'partner_id': self.partner_id,
+                'partner_id': self.partner_id.id,
             })
             # TODO: use queue_job module or postcommit trick to do this outside
             # of current transaction
