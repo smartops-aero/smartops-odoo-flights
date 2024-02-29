@@ -2,30 +2,30 @@
 <odoo noupdate="1">
 
     <!-- Landing Types -->
-    <record id="flight_pilot_event_kind_ld" model="flight.pilot.event.kind">
+    <record id="flight_pilot_activity_kind_ld" model="flight.pilot.activity.kind">
         <field name="code">LDDAY</field>
         <field name="description">Landing</field>
     </record>
-    <record id="flight_pilot_event_kind_ln" model="flight.pilot.event.kind">
+    <record id="flight_pilot_activity_kind_ln" model="flight.pilot.activity.kind">
         <field name="code">LDNIGHT</field>
         <field name="description">Landing Night</field>
     </record>
 
     <!-- Takeoff Types -->
-    <record id="flight_pilot_event_kind_to" model="flight.pilot.event.kind">
+    <record id="flight_pilot_activity_kind_to" model="flight.pilot.activity.kind">
         <field name="code">TODAY</field>
         <field name="description">Takeoff</field>
     </record>
-    <record id="flight_pilot_event_kind_ton" model="flight.pilot.event.kind">
+    <record id="flight_pilot_activity_kind_ton" model="flight.pilot.activity.kind">
         <field name="code">TONIGHT</field>
         <field name="description">Takeoff Night</field>
     </record>
 
-    <record id="flight_pilot_event_kind_hld" model="flight.pilot.event.kind">
+    <record id="flight_pilot_activity_kind_hld" model="flight.pilot.activity.kind">
         <field name="code">HLD</field>
         <field name="description">Holding</field>
     </record>
-    <record id="flight_pilot_event_kind_app" model="flight.pilot.event.kind">
+    <record id="flight_pilot_activity_kind_app" model="flight.pilot.activity.kind">
         <field name="code">APP</field>
         <field name="description">Approach</field>
     </record>
