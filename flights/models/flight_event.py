@@ -1,5 +1,7 @@
 # Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
+import pytz
+
 from odoo import fields, models, api
 from odoo.addons.base.models.res_partner import _tz_get
 
@@ -38,7 +40,7 @@ class FlightEventTime(models.Model):
             else:
                 aerodrome = record.flight_id.departure_id
             record.tz = aerodrome.partner_id.tz
-            time = pytz.utc.localize(record.time).astimezone(record.tz)
+            time = pytz.utc.localize(record.time).astimezone(pytz.timezone(record.tz))
             time_str = time.strftime('%H:%M')
             if overnight:
                 time_str += f' (+{overnight})'
