@@ -9,7 +9,7 @@
     </record>
 
     <record id="flight_param_type_hobbs_out" model="flight.flight.param.type">
-        <field name="comde">hobbs_out</field>
+        <field name="code">hobbs_out</field>
         <field name="name">Hobbs Out</field>
     </record>
 

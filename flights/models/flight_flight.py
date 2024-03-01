@@ -41,3 +41,4 @@ class FlightFlightParamType(models.Model):
     _description = 'Flight Parameter Type'
 
     name = fields.Char()
+    code = fields.Char()
