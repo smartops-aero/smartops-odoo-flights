@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Airplane Classes -->
+        <record id="class_airplane_sel" model="flight.aircraft.class">
+            <field name="aircraft_category">airplane</field>
+            <field name="name">Single-Engine Land</field>
+        </record>
+        <record id="class_airplane_mel" model="flight.aircraft.class">
+            <field name="aircraft_category">airplane</field>
+            <field name="name">Multi-Engine Land</field>
+        </record>
+        <record id="class_airplane_ses" model="flight.aircraft.class">
+            <field name="aircraft_category">airplane</field>
+            <field name="name">Single-Engine Sea</field>
+        </record>
+        <record id="class_airplane_mes" model="flight.aircraft.class">
+            <field name="aircraft_category">airplane</field>
+            <field name="name">Multi-Engine Sea</field>
+        </record>
+
+        <!-- Rotorcraft Classes -->
+        <record id="class_rotorcraft_helicopter" model="flight.aircraft.class">
+            <field name="aircraft_category">rotorcraft</field>
+            <field name="name">Helicopter</field>
+        </record>
+        <record id="class_rotorcraft_gyroplane" model="flight.aircraft.class">
+            <field name="aircraft_category">rotorcraft</field>
+            <field name="name">Gyroplane</field>
+        </record>
+
+        <!-- Glider -->
+        <record id="class_glider" model="flight.aircraft.class">
+            <field name="aircraft_category">glider</field>
+            <field name="name">Glider</field>
+        </record>
+
+        <!-- Lighter than Air -->
+        <record id="class_lighter_than_air_balloon" model="flight.aircraft.class">
+            <field name="aircraft_category">lighter_than_air</field>
+            <field name="name">Balloon</field>
+        </record>
+        <record id="class_lighter_than_air_airship" model="flight.aircraft.class">
+            <field name="aircraft_category">lighter_than_air</field>
+            <field name="name">Airship</field>
+        </record>
+
+        <!-- Powered Lift -->
+        <record id="class_powered_lift" model="flight.aircraft.class">
+            <field name="aircraft_category">powered_lift</field>
+            <field name="name">Powered Lift</field>
+        </record>
+
+        <!-- Powered Parachute -->
+        <record id="class_powered_parachute" model="flight.aircraft.class">
+            <field name="aircraft_category">powered_parachute</field>
+            <field name="name">Powered Parachute</field>
+        </record>
+
+        <!-- Weight Shift Control -->
+        <record id="class_weight_shift_control" model="flight.aircraft.class">
+            <field name="aircraft_category">weight_shift_control</field>
+            <field name="name">Weight Shift Control</field>
+        </record>
+    </data>
+</odoo>
