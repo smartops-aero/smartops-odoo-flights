@@ -12,6 +12,7 @@
                     <field name="action" widget="selection"/>
                     <field name="filename" invisible="1"/>
                     <field name="payload" filename="filename"/>
+                    <field name="partner_id"/>
                 </group>
                 <footer>
                     <button string="Process" type="object" class="oe_highlight" name="do_action"/>

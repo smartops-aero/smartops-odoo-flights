@@ -42,45 +42,10 @@ class FlightFlight(models.Model):
             "aircraft_id": aircraft.id,
         })
 
-        self.env["flight.event.time"]._process_mccpilotlog_xls(flight, data)
-        self.env["flight.pilottime"]._process_mccpilotlog_xls(flight, data)
-        self.env["flight.pilot.event"]._process_mccpilotlog_xls(flight, data)
+        self.env["flight.pilottime"]._process_mccpilotlog_xls(flight, flight_data, data)
+        self.env["flight.pilot.activity"]._process_mccpilotlog_xls(flight, flight_data, data)
+        self.env["flight.event.time"]._process_mccpilotlog_xls(flight, flight_data, data)
 
-        # flight_event_time
-        # * time_dep
-        # * time_depsch
-        # * time_arr
-        # * time_arrsch
-        # * time_to
-        # * time_ldg
-
-        # flight_pilottime
-        # * time_air
-        # * time_total
-        # * time_pic
-        # * time_sic
-        # * time_dual
-        # * time_picus
-        # * time_instructor
-        # * time_examiner
-        # * time_night
-        # * time_xc
-        # * time_ifr
-        # * time_hood
-        # * time_actual
-        # * time_relief
-        # * time_user1
-        # * time_user2
-        # * time_user3
-        # * time_user4
-
-        # flight_pilot_event
-        # * to_day
-        # * to_night
-        # * ldg_day
-        # * ldg_night
-        # * lift
-        # * holding
 
         # TODO
 

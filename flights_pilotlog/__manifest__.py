@@ -27,7 +27,7 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'data/flight_pilot_event_kind_data.xml',
+        'data/flight_pilot_activity_kind_data.xml',
         'data/flight_pilottime_kind_data.xml',
     ],
     # only loaded in demonstration mode

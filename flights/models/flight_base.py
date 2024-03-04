@@ -12,13 +12,18 @@ class FlightBase(models.AbstractModel):
 
     def _sync_flight_data(self, flight_data, vals, key=None):
         """Update record or create a new one"""
+
         if "flight_source_id" not in vals:
             vals["flight_source_id"] = flight_data.id
+        if key and "flight_source_key" not in vals:
+            vals["flight_source_key"] = key
+
         record = flight_data._get_linked_record(self, key)
         if record:
             record.write(vals)
         else:
             record = self.create(vals)
+
         flight_data.is_parsed = True
         return record
 

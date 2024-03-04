@@ -15,6 +15,7 @@ class MagicWizard(models.TransientModel):
     payload = fields.Binary("File", required=True, attachment=False)
     filename = fields.Char(string="Filename")
     override = fields.Boolean("Override existing records", default=True)
+    partner_id = fields.Many2one("res.partner", "Pilot", default=lambda self: self.env.user.partner_id)
 
     def do_action(self):
         if not self.action:
