@@ -2,6 +2,7 @@
 # License MIT (https://opensource.org/licenses/MIT).
 from datetime import datetime
 import json
+import re
 from odoo import models
 
 
@@ -35,11 +36,35 @@ class FlightFlight(models.Model):
 
         aircraft = self.env["flight.aircraft"]._parse_mccpilotlog_xls(flight_data)
 
+        flight_number = self.env["flight.number"]
+        flight_number_match = re.match(r'^([A-Za-z]+)(\d+)$', data["flightnumber"] or '')
+        if flight_number_match:
+            prefix_value = flight_number_match.group(1)
+            numbers_value = flight_number_match.group(2)
+            prefix = self.env["flight.prefix"].search([
+                ('name', '=', prefix_value)
+            ], limit=1)
+            if not prefix:
+                prefix = self.env["flight.prefix"].create({
+                    'name': prefix_value
+                })
+            flight_number = self.env["flight.number"].search([
+                ('prefix_id', '=', prefix.id),
+                ('numbers', '=', numbers_value),
+            ], limit=1)
+            if not flight_number:
+                flight_number = self.env["flight.number"].create({
+                    'prefix_id': prefix.id,
+                    'numbers': numbers_value
+                })
+
+
         flight = self._sync_flight_data(flight_data, {
             "date": datetime.strptime(data['pilotlog_date'], "%Y-%m-%d"),
             "departure_id": self.env['flight.aerodrome'].search_by_code(data['af_dep']).id,
             "arrival_id": self.env['flight.aerodrome'].search_by_code(data['af_arr']).id,
             "aircraft_id": aircraft.id,
+            "flight_number_id": flight_number.id,
         })
 
         self.env["flight.pilottime"]._process_mccpilotlog_xls(flight, flight_data, data)
