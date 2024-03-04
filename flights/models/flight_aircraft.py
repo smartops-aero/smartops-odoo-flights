@@ -4,6 +4,20 @@ from odoo import models, fields
 
 
 class FlightAircraftClass(models.Model):
+    """Aircraft within the same category may possess distinct class names. Below are a few examples:
+
+    1. **Airplanes**: Within the airplane category, various classes exist such
+    as single-engine piston, multi-engine piston, turboprop, jet, and more.
+    Each class boasts unique characteristics and performance specifications.
+
+    2. **Rotorcraft**: In the rotorcraft category, one may find classes like
+    helicopters and gyroplanes, each characterized by its distinct features and
+    flight behavior.
+
+    3. **Powered Parachutes**: Powered parachutes, falling under their
+    designated category, can be further classified based on factors like engine
+    type, seating capacity, or payload capacity.
+    """
     _name = 'flight.aircraft.class'
     _description = 'Aircraft Category and Class'
 
@@ -32,11 +46,6 @@ class FlightAircraftModelTag(models.Model):
     _description = 'Aircraft Model Tag'
 
     name = fields.Char()
-
-    # Examples:
-    # retractable, high performance, pressurized, taa, propeller, turbine, jet, efis, aerobatic, tailwheel
-    # turboprop will have turbine and propeller = turboprop
-    # turbojet will have turbine and jet = turbofan
 
 
 class FlightAircraftModel(models.Model):
@@ -99,10 +108,6 @@ class FlightAircraft(models.Model):
 
     model_id = fields.Many2one("flight.aircraft.model")
 
-    _sql_constraints = [
-        ("registration_unique", "unique(registration)", "Aircraft with this registration number already exists!")
-    ]
-
     equipment_type = fields.Selection([
         ('aircraft', 'Aircraft'),
         ('ffs', 'Full Flight Simulator (FFS)'),
@@ -110,3 +115,7 @@ class FlightAircraft(models.Model):
         ('batd', 'Basic Aircraft Training Device (BATD)'),
         ('aatd', 'Advanced Aircraft Training Device (AATD)'),
     ], string='Equipment Type', default='aircraft')
+
+    _sql_constraints = [
+        ("registration_unique", "unique(registration)", "Aircraft with this registration number already exists!")
+    ]
