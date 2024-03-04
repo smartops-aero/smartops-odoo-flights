@@ -54,7 +54,7 @@ class FlightEventTime(models.Model):
                 aerodrome = record.flight_id.arrival_id
             else:
                 aerodrome = record.flight_id.departure_id
-            record.tz = aerodrome.partner_id.tz
+            record.tz = aerodrome.partner_id.tz or "UTC"
             time = pytz.utc.localize(record.time).astimezone(pytz.timezone(record.tz))
             time_str = time.strftime('%H:%M')
             if overnight:
