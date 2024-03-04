@@ -4,23 +4,27 @@
     <record id="flight_event_kind_departure" model="flight.event.kind">
         <field name="code">OB</field>
         <field name="description">Off-blocks (the moment when an aircraft starts moving for the purpose of flight)</field>
+        <field name="sequence">0</field>
     </record>
 
     <record id="flight_event_kind_takeoff" model="flight.event.kind">
         <field name="code">TO</field>
         <field name="description">Take-off (the moment when an aircraft becomes airborne after accelerating along the runway)</field>
+        <field name="sequence">10</field>
     </record>
 
     <record id="flight_event_kind_landing" model="flight.event.kind">
         <field name="code">LD</field>
         <field name="description">Landing (The moment when an aircraft touches down on the runway after completing its flight)</field>
         <field name="is_arrival" eval="True" />
+        <field name="sequence">20</field>
     </record>
 
     <record id="flight_event_kind_arrival" model="flight.event.kind">
         <field name="code">IB</field>
         <field name="description">In-blocks (the moment arrives to stand and shuts down the engines).</field>
         <field name="is_arrival" eval="True" />
+        <field name="sequence">30</field>
     </record>
 
 </odoo>

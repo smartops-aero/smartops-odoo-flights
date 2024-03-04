@@ -55,6 +55,14 @@
                         <field name="flight_source_id"/>
                     </group>
                     <notebook>
+                        <page string="Flight Timing">
+                            <field name="event_time_ids">
+                                <tree>
+                                    <field name="display_name"/>
+                                    <field name="sequence" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Parameters">
                             <field name="param_ids">
                                 <tree>
