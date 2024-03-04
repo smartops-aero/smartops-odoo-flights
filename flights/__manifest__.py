@@ -36,6 +36,8 @@
         'data/flight_flight_param_type_data.xml',
         'data/flight_crew_role_data.xml',
         'data/flight_event_kind_data.xml',
+        'data/flight_aircraft_class_data.xml',
+        'data/flight_aircraft_model_tag_data.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

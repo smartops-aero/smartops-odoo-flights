@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Record for Aircraft Model Tag: Complex -->
+        <record id="flight_aircraft_model_tag_complex" model="flight.aircraft.model.tag">
+            <field name="name">complex</field>
+        </record>
+
+        <!-- Record for Aircraft Model Tag: TAA -->
+        <record id="flight_aircraft_model_tag_taa" model="flight.aircraft.model.tag">
+            <field name="name">TAA</field>
+        </record>
+
+        <!-- Record for Aircraft Model Tag: High Performance -->
+        <record id="flight_aircraft_model_tag_high_performance" model="flight.aircraft.model.tag">
+            <field name="name">high-performance</field>
+        </record>
+
+        <!-- Record for Aircraft Model Tag: Pressurized -->
+        <record id="flight_aircraft_model_tag_pressurized" model="flight.aircraft.model.tag">
+            <field name="name">pressurized</field>
+        </record>
+    </data>
+</odoo>
