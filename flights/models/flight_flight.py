@@ -21,9 +21,15 @@ class FlightFlight(models.Model):
 
     departure_id = fields.Many2one('flight.aerodrome')
     arrival_id = fields.Many2one('flight.aerodrome')
-    event_time_ids = fields.One2many('flight.event.time', 'flight_id')
+    event_time_ids = fields.One2many('flight.event.time', 'flight_id', string="Flight Timing")
 
     param_ids = fields.One2many('flight.flight.param', 'flight_id')
+
+    @api.depends("aircraft_id", "date")
+    def _compute_display_name(self):
+        for record in self:
+            # TODO check timezone for date
+            record.display_name = f"{record.aircraft_id.registration}: {record.date}"
 
 
 class FlightFlightParam(models.Model):

@@ -8,6 +8,7 @@ class FlightFlight(models.Model):
 
     pilot_activity_ids = fields.One2many('flight.pilot.activity', 'flight_id')
     pilottime_ids = fields.One2many('flight.pilottime', 'flight_id')
+    pilot_note_ids = fields.One2many('flight.pilot.note', 'flight_id')
     flight_time = fields.Integer("Flight Time", compute='_compute_flight_time')
     total_time = fields.Integer("Total Flight Time", compute='_compute_flight_time')
 

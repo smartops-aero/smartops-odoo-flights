@@ -71,12 +71,7 @@ class FlightFlight(models.Model):
         self.env["flight.pilot.activity"]._process_mccpilotlog_xls(flight, flight_data, data)
         self.env["flight.event.time"]._process_mccpilotlog_xls(flight, flight_data, data)
         self.env["flight.crew"]._process_mccpilotlog_xls(flight, flight_data, data)
-
-
-        # TODO
-
-        # pliotlog_notes
-        # * route
+        self.env["flight.pilot.note"]._process_mccpilotlog_xls(flight, flight_data, data)
 
         return flight
 
