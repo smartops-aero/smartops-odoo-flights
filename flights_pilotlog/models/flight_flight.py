@@ -31,3 +31,14 @@ class FlightFlight(models.Model):
                 result.append(f"{pt.time_kind_id.name} > TOTAL!")
 
         return result
+
+    def get_pilottime_by_code(self, code):
+        self.ensure_one()
+        return self.pilottime_ids.filtered(lambda r: r.time_kind_id.name == code).minutes or 0
+    def get_pilot_activity_by_code(self, code):
+        self.ensure_one()
+        return self.pilot_activity_ids.filtered(lambda r: r.kind_id.code == code).count or 0
+
+    def get_note_by_code(self, code):
+        self.ensure_one()
+        return self.pilot_note_ids.filtered(lambda r: r.kind == code).text

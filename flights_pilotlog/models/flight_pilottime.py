@@ -44,5 +44,6 @@ class FlightPilotTimeKind(models.Model):
     _name = 'flight.pilottime.kind'
     _description = 'Flight Pilot Time Statistics Type'
 
+    # TODO: rename name to code as it's done in other similar models
     name = fields.Char("Code")
     description = fields.Char("Description")

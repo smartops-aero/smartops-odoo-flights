@@ -55,6 +55,18 @@ class FlightFlight(models.Model):
     def action_check_errors(self):
         self._compute_has_errors()
 
+    def get_time_by_code(self, code, time_kind="A", time_format="%H:%M"):
+        self.ensure_one()
+        time = self.event_time_ids.filtered(lambda r: r.time_kind == time_kind and r.kind_id.code == code).time
+        if time:
+            return time.strftime(time_format)
+        else:
+            return
+
+    def get_param_by_code(self, code):
+        self.ensure_one()
+        self.param_ids.filtered(lambda r: r.param_type_id.code == code).value
+
 
 class FlightFlightParam(models.Model):
     _name = 'flight.flight.param'
@@ -70,6 +82,7 @@ class FlightFlightParamType(models.Model):
     _name = 'flight.flight.param.type'
     _description = 'Flight Parameter Type'
 
+    # Rename "name" to "description"
     name = fields.Char()
     code = fields.Char()
 
