@@ -30,6 +30,7 @@
     'data': [
         'security/ir.model.access.csv',
         'wizard/flight_wizard_views.xml',
+        'wizard/flight_export_wizard_views.xml',
         'views/views.xml',
         'views/flight_aerodrome_views.xml',
         'views/templates.xml',
