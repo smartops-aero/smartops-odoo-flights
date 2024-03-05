@@ -5,11 +5,20 @@ import pytz
 from odoo import fields, models, api
 from odoo.addons.base.models.res_partner import _tz_get
 
+TIME_KIND2VALUE = {
+    "S": 0,
+    "T": 100,
+    "E": 200,
+    "A": 300,
+    "R": 400,
+}
+
 
 class FlightEventTime(models.Model):
     _name = 'flight.event.time'
     _inherit = 'flight.base'
     _description = 'Flight Event Time'
+    _order = "sequence"
 
     flight_id = fields.Many2one('flight.flight')
     kind_id = fields.Many2one('flight.event.kind', 'Flight Event Kind')
@@ -26,6 +35,12 @@ class FlightEventTime(models.Model):
     overnight = fields.Integer()
     tz = fields.Selection(_tz_get, compute="_compute_display_time", store=True)
     display_time = fields.Char(compute="_compute_display_time", store=True)
+    sequence = fields.Integer(compute="_compute_sequence", store=True)
+
+    @api.depends("kind_id.sequence", "time_kind")
+    def _compute_sequence(self):
+        for record in self:
+            record.sequence = TIME_KIND2VALUE[record.time_kind] + record.kind_id.sequence
 
     @api.depends("time", "overnight", "kind_id.is_arrival")
     def _compute_display_time(self):
@@ -39,7 +54,7 @@ class FlightEventTime(models.Model):
                 aerodrome = record.flight_id.arrival_id
             else:
                 aerodrome = record.flight_id.departure_id
-            record.tz = aerodrome.partner_id.tz
+            record.tz = aerodrome.partner_id.tz or "UTC"
             time = pytz.utc.localize(record.time).astimezone(pytz.timezone(record.tz))
             time_str = time.strftime('%H:%M')
             if overnight:
@@ -61,3 +76,4 @@ class FlightEventKind(models.Model):
     code = fields.Char()
     description = fields.Char()
     is_arrival = fields.Boolean()
+    sequence = fields.Integer()

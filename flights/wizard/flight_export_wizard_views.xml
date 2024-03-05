@@ -1,0 +1,34 @@
+<odoo><!--
+          Copyright 2024 Apexive <https://apexive.com/>
+          License MIT (https://opensource.org/licenses/MIT).
+       -->
+
+    <!-- Define view for flight.export.wizard -->
+    <record id="view_flight_export_wizard_form" model="ir.ui.view">
+        <field name="name">flight.export.wizard.form</field>
+        <field name="model">flight.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Flight Data">
+                <group>
+                    <field name="action"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="Export" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define action for flight.export.wizard -->
+    <record id="action_flight_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Flight Data</field>
+        <field name="res_model">flight.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Define menu item for flight.export.wizard -->
+    <menuitem id="menu_flight_export_wizard" name="Export Flight Data" parent="menu_config_folder"
+              action="action_flight_export_wizard" sequence="10"/>
+</odoo>
