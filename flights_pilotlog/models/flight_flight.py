@@ -16,5 +16,18 @@ class FlightFlight(models.Model):
     def _compute_flight_time(self):
         for flight in self:
             # TODO: check computation
-            flight.flight_time = sum(record.minutes for record in flight.pilottime_ids if record.time_kind_id.name in ["DUAL", "PIC"])
-            flight.total_time = sum(record.minutes for record in flight.pilottime_ids if record.time_kind_id.name == "TOTAL")
+            flight.flight_time = sum(pt.minutes for pt in flight.pilottime_ids if pt.time_kind_id.name in ["DUAL", "PIC"])
+            flight.total_time = sum(pt.minutes for pt in flight.pilottime_ids if pt.time_kind_id.name == "TOTAL")
+
+    def _check_errors(self):
+        self.ensure_one()
+        result = super()._check_errors()
+        # Check total time
+        if self.flight_time > self.total_time:
+            result.append("DUAL + PIC > TOTAL")
+        # Check Pilottime
+        for pt in self.pilottime_ids:
+            if (pt.minutes > self.total_time):
+                result.append(f"{pt.time_kind_id.name} > TOTAL!")
+
+        return result

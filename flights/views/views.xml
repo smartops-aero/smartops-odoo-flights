@@ -32,6 +32,7 @@
                 <field name="flight_number_id"/>
                 <field name="departure_id"/>
                 <field name="arrival_id"/>
+                <field name="has_errors"/>
             </tree>
         </field>
     </record>
@@ -79,6 +80,9 @@
                                 </tree>
                             </field>
                         </page>
+                        <page string="Errors" attrs="{'invisible': [('errors', '=', '')]}">
+                            <field name="errors" />
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -87,7 +91,14 @@
 
     <menuitem id="menu_flight_flight" name="Flights" parent="menu_flights_folder" action="action_flight_flight" sequence="1"/>
 
-
+    <record id="action_flight_flight_check_errors" model="ir.actions.server">
+        <field name="name">Check Data</field>
+        <field name="model_id" ref="flights.model_flight_flight"/>
+        <field name="binding_model_id" ref="flights.model_flight_flight"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">records.action_check_errors()</field>
+    </record>
 
     <!-- Define action for flight.aircraft -->
     <record id="action_flight_aircraft" model="ir.actions.act_window">
@@ -170,4 +181,5 @@
     </record>
 
     <menuitem id="menu_flight_data" name="Source Data" parent="menu_config_folder" action="action_flight_data" sequence="20"/>
+
 </odoo>

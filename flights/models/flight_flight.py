@@ -1,6 +1,6 @@
 # Copyright 2024 Apexive <https://apexive.com/>
 # License MIT (https://opensource.org/licenses/MIT).
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class FlightFlight(models.Model):
@@ -25,11 +25,35 @@ class FlightFlight(models.Model):
 
     param_ids = fields.One2many('flight.flight.param', 'flight_id')
 
+    errors = fields.Text(compute='_compute_errors')
+    has_errors = fields.Boolean(compute='_compute_has_errors', store=True, string="⚠️")
+
     @api.depends("aircraft_id", "date")
     def _compute_display_name(self):
         for record in self:
             # TODO check timezone for date
             record.display_name = f"{record.aircraft_id.registration}: {record.date}"
+
+    def _compute_has_errors(self):
+        for record in self:
+            record.has_errors = bool(record.errors)
+
+    def _compute_errors(self):
+        for record in self:
+            record.errors = "\n".join(record._check_errors())
+
+    def _check_errors(self):
+        """Can be extended by other modules"""
+        self.ensure_one()
+        result = []
+        if not self.departure_id:
+            result.append(_("Departure aerodrome is not set"))
+        if not self.arrival_id:
+            result.append(_("Arrival aerodrome is not set"))
+        return result
+
+    def action_check_errors(self):
+        self._compute_has_errors()
 
 
 class FlightFlightParam(models.Model):
