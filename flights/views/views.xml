@@ -28,6 +28,7 @@
         <field name="arch" type="xml">
             <tree>
                 <!-- Define columns in the tree view -->
+                <field name="date"/>
                 <field name="aircraft_id"/>
                 <field name="flight_number_id"/>
                 <field name="departure_id"/>

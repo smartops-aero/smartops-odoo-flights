@@ -15,6 +15,9 @@ TIME_KIND2VALUE = {
 
 
 class FlightEventTime(models.Model):
+    """
+    All events times are in UTC
+    """
     _name = 'flight.event.time'
     _inherit = 'flight.base'
     _description = 'Flight Event Time'
@@ -32,8 +35,8 @@ class FlightEventTime(models.Model):
     ], "Time Kind", required=True, default="A")
 
     time = fields.Datetime()
-    overnight = fields.Integer()
-    tz = fields.Selection(_tz_get, compute="_compute_display_time", store=True)
+    # overnight = fields.Integer()
+    # tz = fields.Selection(_tz_get, compute="_compute_display_time", store=True)
     display_time = fields.Char(compute="_compute_display_time", store=True)
     sequence = fields.Integer(compute="_compute_sequence", store=True)
 
@@ -75,5 +78,12 @@ class FlightEventKind(models.Model):
 
     code = fields.Char()
     description = fields.Char()
-    is_arrival = fields.Boolean()
+    # is_arrival = fields.Boolean()
     sequence = fields.Integer()
+
+
+class FlightDurationKind(models.Model):
+    start_event = fields.One2many("event")
+    end_event = fields.One2many("event")
+    name = fields.Char()
+
