@@ -32,7 +32,11 @@
                 <field name="aircraft_id"/>
                 <field name="flight_number_id"/>
                 <field name="departure_id"/>
+                <field name="departure_time_id"/>
                 <field name="arrival_id"/>
+                <field name="arrival_time_id"/>
+                <field name="total_duration"/>
+                <field name="flight_duration"/>
                 <field name="has_errors"/>
             </tree>
         </field>
@@ -49,12 +53,15 @@
                         <h1><field name="display_name" class="oe_inline"/></h1>
                     </div>
                     <group>
+                        <field name="date"/>
                         <field name="aircraft_id"/>
                         <field name="flight_number_id"/>
-                        <field name="operator_id"/>
                         <field name="departure_id"/>
+                        <field name="departure_time_id"/>
                         <field name="arrival_id"/>
-                        <field name="flight_source_id"/>
+                        <field name="arrival_time_id"/>
+                        <field name="total_duration"/>
+                        <field name="flight_duration"/>
                     </group>
                     <notebook>
                         <page string="Flight Timing">
