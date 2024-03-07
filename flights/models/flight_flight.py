@@ -11,7 +11,8 @@ class FlightFlight(models.Model):
     _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
-    date = fields.Date()
+    date = fields.Date("Flight Date")
+    display_date = fields.Date("Date", compute="_compute_flight_time")
 
     flight_number_id = fields.Many2one('flight.number')
     operator_id = fields.Many2one("res.partner", "Operator Company")
@@ -39,12 +40,14 @@ class FlightFlight(models.Model):
             flight.flight_duration = 0
             flight.total_duration = 0
             flight.departure_time_id = None
-            flight.arrival_time_id  = None
+            flight.arrival_time_id = None
+            flight.display_date = flight.date
             for event_duration in flight.event_duration_ids:
                 start_code = event_duration.start_id.kind_id.code
                 # TODO: check computation
                 if start_code == "OB":
                     flight.total_duration = event_duration.duration
+                    flight.display_date = event_duration.start_id.time
                 elif start_code == "TO":
                     flight.flight_duration = event_duration.duration
                     flight.departure_time_id = event_duration.start_id
