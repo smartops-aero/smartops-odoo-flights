@@ -58,9 +58,11 @@
                     </group>
                     <notebook>
                         <page string="Flight Timing">
-                            <field name="event_time_ids">
+                            <field name="event_duration_ids">
                                 <tree>
-                                    <field name="display_name"/>
+                                    <field name="start_id"/>
+                                    <field name="end_id"/>
+                                    <field name="duration"/>
                                     <field name="sequence" invisible="1"/>
                                 </tree>
                             </field>
@@ -182,5 +184,10 @@
     </record>
 
     <menuitem id="menu_flight_data" name="Source Data" parent="menu_config_folder" action="action_flight_data" sequence="20"/>
+
+
+    <!-- Define menu item for flight.export.wizard -->
+    <menuitem id="menu_flight_export_wizard" name="Export Flight Data" parent="menu_config_folder"
+              action="action_flight_export_wizard" sequence="10"/>
 
 </odoo>
