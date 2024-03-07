@@ -11,7 +11,8 @@ class FlightFlight(models.Model):
     _rec_name = 'flight_number_id'
 
     aircraft_id = fields.Many2one('flight.aircraft')
-    date = fields.Date()
+    date = fields.Date("Flight Date")
+    display_date = fields.Date("Date", compute="_compute_flight_time")
 
     flight_number_id = fields.Many2one('flight.number')
     operator_id = fields.Many2one("res.partner", "Operator Company")
@@ -21,17 +22,40 @@ class FlightFlight(models.Model):
 
     departure_id = fields.Many2one('flight.aerodrome')
     arrival_id = fields.Many2one('flight.aerodrome')
-    event_time_ids = fields.One2many('flight.event.time', 'flight_id', string="Flight Timing")
+    event_time_ids = fields.One2many('flight.event.time', 'flight_id', string="Flight Timing Events")
+    event_duration_ids = fields.One2many('flight.event.duration', 'flight_id', string="Flight Timing Durations")
+    flight_duration = fields.Integer("Flight Time", compute='_compute_flight_time')
+    total_duration = fields.Integer("Total Flight Time", compute='_compute_flight_time')
+    departure_time_id = fields.Many2one('flight.event.time', compute='_compute_flight_time')
+    arrival_time_id = fields.Many2one('flight.event.time', compute='_compute_flight_time')
 
     param_ids = fields.One2many('flight.flight.param', 'flight_id')
 
     errors = fields.Text(compute='_compute_errors')
     has_errors = fields.Boolean(compute='_compute_has_errors', store=True, string="⚠️")
 
+    @api.depends('event_duration_ids')
+    def _compute_flight_time(self):
+        for flight in self:
+            flight.flight_duration = 0
+            flight.total_duration = 0
+            flight.departure_time_id = None
+            flight.arrival_time_id = None
+            flight.display_date = flight.date
+            for event_duration in flight.event_duration_ids:
+                start_code = event_duration.start_id.kind_id.code
+                # TODO: check computation
+                if start_code == "OB":
+                    flight.total_duration = event_duration.duration
+                    flight.display_date = event_duration.start_id.time
+                elif start_code == "TO":
+                    flight.flight_duration = event_duration.duration
+                    flight.departure_time_id = event_duration.start_id
+                    flight.arrival_time_id = event_duration.end_id
+
     @api.depends("aircraft_id", "date")
     def _compute_display_name(self):
         for record in self:
-            # TODO check timezone for date
             record.display_name = f"{record.aircraft_id.registration}: {record.date}"
 
     def _compute_has_errors(self):
@@ -50,6 +74,10 @@ class FlightFlight(models.Model):
             result.append(_("Departure aerodrome is not set"))
         if not self.arrival_id:
             result.append(_("Arrival aerodrome is not set"))
+
+        if self.flight_duration > self.total_duration:
+            result.append("Flight time > Total time")
+
         return result
 
     def action_check_errors(self):

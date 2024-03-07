@@ -18,7 +18,7 @@
     <record id="action_flight_flight" model="ir.actions.act_window">
         <field name="name">Flights</field>
         <field name="res_model">flight.flight</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Define tree view for flight.flight -->
@@ -28,10 +28,15 @@
         <field name="arch" type="xml">
             <tree>
                 <!-- Define columns in the tree view -->
+                <field name="display_date"/>
                 <field name="aircraft_id"/>
                 <field name="flight_number_id"/>
                 <field name="departure_id"/>
+                <field name="departure_time_id"/>
                 <field name="arrival_id"/>
+                <field name="arrival_time_id"/>
+                <field name="total_duration"/>
+                <field name="flight_duration"/>
                 <field name="has_errors"/>
             </tree>
         </field>
@@ -48,18 +53,23 @@
                         <h1><field name="display_name" class="oe_inline"/></h1>
                     </div>
                     <group>
+                        <field name="date"/>
                         <field name="aircraft_id"/>
                         <field name="flight_number_id"/>
-                        <field name="operator_id"/>
                         <field name="departure_id"/>
+                        <field name="departure_time_id"/>
                         <field name="arrival_id"/>
-                        <field name="flight_source_id"/>
+                        <field name="arrival_time_id"/>
+                        <field name="total_duration"/>
+                        <field name="flight_duration"/>
                     </group>
                     <notebook>
                         <page string="Flight Timing">
-                            <field name="event_time_ids">
+                            <field name="event_duration_ids">
                                 <tree>
-                                    <field name="display_name"/>
+                                    <field name="start_id"/>
+                                    <field name="end_id"/>
+                                    <field name="duration"/>
                                     <field name="sequence" invisible="1"/>
                                 </tree>
                             </field>
@@ -181,5 +191,10 @@
     </record>
 
     <menuitem id="menu_flight_data" name="Source Data" parent="menu_config_folder" action="action_flight_data" sequence="20"/>
+
+
+    <!-- Define menu item for flight.export.wizard -->
+    <menuitem id="menu_flight_export_wizard" name="Export Flight Data" parent="menu_config_folder"
+              action="action_flight_export_wizard" sequence="10"/>
 
 </odoo>

@@ -5,15 +5,11 @@ import pytz
 
 from odoo import fields, models
 
-FLIGHT_EVENT_MAP = {
-    "time_dep":    ("flights.flight_event_kind_departure", "A", "departure_id"),
-    "time_depsch": ("flights.flight_event_kind_departure", "S", "departure_id"),
-    "time_to":     ("flights.flight_event_kind_takeoff",   "A", "departure_id"),
-    "time_ldg":    ("flights.flight_event_kind_landing",   "A", "arrival_id"),
-    "time_arr":    ("flights.flight_event_kind_arrival",   "A", "arrival_id"),
-    "time_arrsch": ("flights.flight_event_kind_arrival",   "S", "arrival_id"),
+MAPPING = {
+    ("flights.flight_event_duration_kind_ob_ib", "A"): ("time_dep",    "time_arr"),
+    ("flights.flight_event_duration_kind_ob_ib", "S"): ("time_depsch", "time_arrsch"),
+    ("flights.flight_event_duration_kind_to_ld", "A"): ("time_to",     "time_ldg"),
 }
-
 
 
 class FlightEventTime(models.Model):
@@ -24,38 +20,46 @@ class FlightEventTime(models.Model):
         date_value = data["pilotlog_date"]
         date_obj = datetime.strptime(date_value, "%Y-%m-%d").date()
 
-        def time2dt(time_value, tz_value):
+        def time2dt(time_value):
             dt_value = f"{date_value} {time_value}"
-            dt = datetime.strptime(dt_value, "%Y-%m-%d %H:%M")
-
-            tz = pytz.timezone(tz_value)
-            localized_dt = tz.localize(dt)
-
-            # Convert to UTC time
-            utc_dt = localized_dt.astimezone(pytz.utc)
-
-            # Convert to naive datetime (remove timezone information)
-            naive_dt = utc_dt.replace(tzinfo=None)
-
-            return naive_dt
+            return datetime.strptime(dt_value, "%Y-%m-%d %H:%M")
 
         pilot = flight_data.partner_id
-        result = {}
-        for key, (event_kind, time_kind, aerodrome_field) in FLIGHT_EVENT_MAP.items():
-            aerodrome = flight[aerodrome_field]
-            tz_value = aerodrome.partner_id.tz if aerodrome else "UTC"
-            result[key] = {
+        events = {}
+        durations = {}
+        for (duration_kind_ref, time_kind), (start_key, end_key) in MAPPING.items():
+            if data[start_key] == "00:00" and data[end_key] == "00:00":
+                continue
+
+            start_time = time2dt(data[start_key])
+            end_time = time2dt(data[end_key])
+            if start_time > end_time:
+                end_time += timedelta(days=1)
+
+            duration_kind = self.env.ref(duration_kind_ref)
+
+            # start event
+            vals = {
                 "flight_id": flight.id,
-                "kind_id": self.env.ref(event_kind).id,
+                "kind_id": duration_kind.start_kind_id.id,
                 "time_kind": time_kind,
-                "time": time2dt(data[key], tz_value),
+                "time": start_time,
             }
+            start = self._sync_flight_data(flight_data, vals, start_key)
 
-        # Add +1 day if needed
-        for start, end in (("time_dep", "time_arr"), ("time_depsch", "time_arrsch"), ("time_to", "time_ldg")):
-            if result[start]["time"] > result[end]["time"]:
-                result[end]["time"] += timedelta(days=1)
-                result[end]["overnight"] = 1
+            # end event
+            vals = {
+                "flight_id": flight.id,
+                "kind_id": duration_kind.end_kind_id.id,
+                "time_kind": time_kind,
+                "time": end_time,
+            }
+            end = self._sync_flight_data(flight_data, vals, end_key)
 
-        for key, vals in result.items():
-            self._sync_flight_data(flight_data, vals, key)
+            # duration
+            vals = {
+                "duration_kind_id": duration_kind.id,
+                "start_id": start.id,
+                "end_id": end.id,
+            }
+            duration = self.env['flight.event.duration']._sync_flight_data(flight_data, vals, duration_kind_ref + time_kind)
