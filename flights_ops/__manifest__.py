@@ -12,14 +12,13 @@
     'license': "Other OSI approved licence",  # MIT
 
     # any module necessary for this one to work correctly
-    'depends': ['flights'],
+    'depends': [
+        'flights',
+        'resource_booking',
+        'hr',
+    ],
 
     # always loaded
     'data': [
-    ],
-
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
     ],
 }
