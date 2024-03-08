@@ -17,6 +17,7 @@ Functionality:
 | landing | 11:30 | 11:25 | -0:05    | 0:50     |
 | in-blocks | 11:35 | 11:35 | -     | 1:20     |
 
+
 - in the flight form we want to see the links into Invoices and Bills
 
 for bills, we want to be able to add on which flight but also where the bill took place, i.e. which airport
